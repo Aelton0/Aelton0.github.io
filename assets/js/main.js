@@ -1,10 +1,166 @@
 /**
- * Aelton SM — Editorial Portfolio
- * Restrained, intentional interactions inspired by Componine.
+ * Aelton SM — Editorial Technical Portfolio
+ * Immersive Componine Hero System, Preloader, and Mechanical Rolling Text
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Smooth scroll for header anchor links
+  // ========================================================================
+  // 1. MECHANICAL ROLLING TEXT GENERATOR
+  // ========================================================================
+  const rollingTextElements = document.querySelectorAll('.rolling-text');
+
+  rollingTextElements.forEach(el => {
+    const rawText = el.getAttribute('data-rolling') || el.textContent.trim();
+    if (!rawText) return;
+
+    el.innerHTML = '';
+    let charIndex = 0;
+
+    for (let i = 0; i < rawText.length; i++) {
+      const char = rawText[i];
+      if (char === ' ') {
+        const spaceSpan = document.createElement('span');
+        spaceSpan.className = 'rolling-char-space';
+        spaceSpan.innerHTML = '&nbsp;';
+        el.appendChild(spaceSpan);
+      } else {
+        const wrapper = document.createElement('span');
+        wrapper.className = 'rolling-char-wrapper';
+        wrapper.style.setProperty('--char-index', charIndex);
+
+        const inner = document.createElement('span');
+        inner.className = 'rolling-char-inner';
+
+        const topChar = document.createElement('span');
+        topChar.className = 'rolling-char-top';
+        topChar.textContent = char;
+
+        const bottomChar = document.createElement('span');
+        bottomChar.className = 'rolling-char-bottom';
+        bottomChar.setAttribute('aria-hidden', 'true');
+        bottomChar.textContent = char;
+
+        inner.appendChild(topChar);
+        inner.appendChild(bottomChar);
+        wrapper.appendChild(inner);
+        el.appendChild(wrapper);
+
+        charIndex++;
+      }
+    }
+  });
+
+  // ========================================================================
+  // 2. KINETIC PRELOADER (WORDS CYCLING & 16-PANEL CURTAIN RETRACT)
+  // ========================================================================
+  const preloader = document.getElementById('preloader');
+  const percentEl = document.getElementById('loading-percent');
+  const wordEls = document.querySelectorAll('.loading-word');
+  const slices = document.querySelectorAll('.loading-panel-slice');
+
+  // Stagger slice transitions so they slide up like curtain folds
+  slices.forEach((slice, idx) => {
+    slice.style.transitionDelay = `${idx * 24}ms`;
+  });
+
+  if (preloader && percentEl) {
+    let currentPercent = 0;
+    const duration = 1800; // ms
+    const startTime = performance.now();
+    let currentWordIdx = 0;
+
+    function updatePreloader(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      currentPercent = Math.floor(progress * 100);
+      percentEl.textContent = `${currentPercent}%`;
+
+      // Cycle words at 0%, 25%, 50%, 75%
+      let targetWordIdx = 0;
+      if (currentPercent >= 75) targetWordIdx = 3;
+      else if (currentPercent >= 50) targetWordIdx = 2;
+      else if (currentPercent >= 25) targetWordIdx = 1;
+
+      if (targetWordIdx !== currentWordIdx) {
+        if (wordEls[currentWordIdx]) {
+          wordEls[currentWordIdx].classList.remove('active');
+          wordEls[currentWordIdx].classList.add('exit');
+        }
+        currentWordIdx = targetWordIdx;
+        if (wordEls[currentWordIdx]) {
+          wordEls[currentWordIdx].classList.remove('exit');
+          wordEls[currentWordIdx].classList.add('active');
+        }
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(updatePreloader);
+      } else {
+        // Complete! Trigger curtain reveal
+        setTimeout(() => {
+          preloader.classList.add('hide-panels');
+          const totalRetractTime = slices.length * 24 + 850;
+          setTimeout(() => {
+            preloader.classList.add('completed');
+            preloader.style.display = 'none';
+          }, totalRetractTime);
+        }, 200);
+      }
+    }
+
+    requestAnimationFrame(updatePreloader);
+  }
+
+  // ========================================================================
+  // 3. SUBTLE MOUSE PARALLAX ON HERO FRESCO ARTWORK
+  // ========================================================================
+  const heroSection = document.getElementById('hero');
+  const heroGod = document.getElementById('hero-god');
+  const heroClient = document.getElementById('hero-client');
+  const heroArtworkStage = document.getElementById('hero-artwork-stage');
+
+  if (heroSection && window.innerWidth > 1024) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const normX = (e.clientX - rect.left) / rect.width - 0.5;
+      const normY = (e.clientY - rect.top) / rect.height - 0.5;
+      mouseX = normX * 24;
+      mouseY = normY * 16;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      mouseX = 0;
+      mouseY = 0;
+    });
+
+    function renderParallax() {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+
+      if (heroGod) {
+        heroGod.style.transform = `translate3d(${currentX * -0.9}px, ${currentY * -0.9}px, 0)`;
+      }
+      if (heroClient) {
+        heroClient.style.transform = `translate3d(${currentX * 1.1}px, ${currentY * 1.1}px, 0)`;
+      }
+      if (heroArtworkStage) {
+        heroArtworkStage.style.transform = `translateX(-50%) translate3d(${currentX * 0.3}px, ${currentY * 0.3}px, 0)`;
+      }
+
+      requestAnimationFrame(renderParallax);
+    }
+
+    requestAnimationFrame(renderParallax);
+  }
+
+  // ========================================================================
+  // 4. SMOOTH SCROLL FOR ANCHOR LINKS
+  // ========================================================================
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -20,7 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 2. Interactive Discipline List in "THE WORK" Section
+  // ========================================================================
+  // 5. INTERACTIVE DISCIPLINE LIST IN "THE WORK" SECTION
+  // ========================================================================
   const disciplineItems = document.querySelectorAll('.discipline-item');
   const previewImage = document.getElementById('discipline-preview-img');
 
@@ -46,7 +204,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Dynamic Year in footer
+  // ========================================================================
+  // 6. DYNAMIC YEAR IN FOOTER
+  // ========================================================================
   const yearEl = document.getElementById('year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();

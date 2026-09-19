@@ -1,0 +1,891 @@
+/* ==========================================================================
+   COMPONINE HERO SECTION & EDITORIAL EXPERIENCE
+   Inspired by componine.com: Celestial Chiaroscuro, Sacred Geometry,
+   Floating Frosted Glass Navbar, Kinetic Preloader, and Monumental Typography
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. KEYFRAME ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes rotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes move-circle-right {
+  0%, 83.33% { transform: translateY(-50%) translate(-56px); }
+  100% { transform: translateY(-50%) translate(60px); }
+}
+
+@keyframes move-circle-left {
+  0%, 83.33% { transform: translateY(-50%) translate(56px); }
+  100% { transform: translateY(-50%) translate(-60px); }
+}
+
+@keyframes pulse-ai {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.85; }
+}
+
+@keyframes ring-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* --------------------------------------------------------------------------
+   1. KINETIC PRELOADER OVERLAY
+   -------------------------------------------------------------------------- */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 10000;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+}
+
+.loading-overlay.completed {
+  pointer-events: none;
+}
+
+.loading-panel-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 10;
+}
+
+.loading-panel-slice {
+  flex: 1;
+  height: 100%;
+  background-color: #0c0806;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  will-change: transform;
+  transform: translateY(0);
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.loading-overlay.hide-panels .loading-panel-slice {
+  transform: translateY(-100%);
+}
+
+.loading-progress-container {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  align-items: baseline;
+  transition: opacity 0.5s ease;
+}
+
+.loading-top-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.loading-right-line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.loading-percent {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: #f0efea;
+  opacity: 0.7;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  min-width: 80px;
+}
+
+.loading-words-clip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  pointer-events: none;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #f0efea;
+  overflow: hidden;
+  height: 1.3em;
+  line-height: 1.3em;
+  text-align: center;
+}
+
+.loading-word {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.loading-word.active {
+  transform: translateX(-50%) translateY(0%);
+  opacity: 1;
+}
+
+.loading-word.exit {
+  transform: translateX(-50%) translateY(-100%);
+  opacity: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. FLOATING FROSTED GLASS NAVBAR (COMPONINE PATTERN)
+   -------------------------------------------------------------------------- */
+.componine-nav-wrapper {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  pointer-events: none;
+  padding: 0 32px;
+}
+
+.componine-nav {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Frosted Pill Base */
+.shadow-button {
+  pointer-events: auto;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(22, 20, 18, 0.72);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.08), 0 12px 28px -8px rgba(0, 0, 0, 0.65);
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shadow-button:hover {
+  background: rgba(28, 25, 22, 0.85);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.14), 0 16px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+/* Left Pill: Brand + Nav Links */
+.nav-menu-pill {
+  padding: 5px 8px 5px 6px;
+  gap: 6px;
+}
+
+.nav-brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: transform 0.3s ease, background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.nav-brand-logo:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-brand-logo img,
+.nav-brand-logo svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-links-track {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-item-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(240, 239, 234, 0.72);
+  transition: color 0.25s ease, background-color 0.25s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-item-link svg {
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.nav-item-link:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-item-link:hover svg {
+  opacity: 1;
+}
+
+/* Mechanical Rolling Text Animation */
+.rolling-text {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  position: relative;
+}
+
+.rolling-char-wrapper {
+  display: inline-block;
+  vertical-align: baseline;
+  height: 17px;
+  line-height: 17px;
+  overflow: hidden;
+  position: relative;
+}
+
+.rolling-char-space {
+  display: inline-block;
+  width: 0.25em;
+}
+
+.rolling-char-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--char-index, 0) * 16ms);
+  transform: translateY(0);
+}
+
+.rolling-char-top,
+.rolling-char-bottom {
+  height: 17px;
+  line-height: 17px;
+  display: block;
+}
+
+.rolling-char-bottom {
+  color: #FFFFFF;
+}
+
+.nav-item-link:hover .rolling-char-inner,
+.cta-pill-button:hover .rolling-char-inner {
+  transform: translateY(-17px);
+}
+
+/* Right Pill: CTA Button with Halftone Ambient Light */
+.nav-cta-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cta-pill-button {
+  padding: 8px 18px 8px 14px;
+  gap: 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cta-pill-button .button-icon {
+  width: 15px;
+  height: 15px;
+  color: #FFFFFF;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+/* Halftone Ambient Glow in CTA */
+.button-circles-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.button-circles-wrapper .moving-circle {
+  position: absolute;
+  top: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  filter: blur(10px);
+  mix-blend-mode: plus-lighter;
+  transform: translateY(-50%);
+}
+
+.button-circles-wrapper .moving-circle-right {
+  left: 0;
+  animation: move-circle-right 6s cubic-bezier(0.55, -0.01, 0.29, 1.01) infinite;
+}
+
+.button-circles-wrapper .moving-circle-left {
+  right: 0;
+  animation: move-circle-left 6s cubic-bezier(0.55, -0.01, 0.29, 1.01) infinite;
+}
+
+/* Round Dot Menu Trigger */
+.header-toggle-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toggle-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+
+.toggle-dot {
+  width: 3.5px;
+  height: 3.5px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.header-toggle-circle:hover .toggle-dot:nth-child(2) {
+  transform: scale(1.4);
+}
+
+/* --------------------------------------------------------------------------
+   3. COMPONINE HERO SECTION
+   -------------------------------------------------------------------------- */
+.hero-section-componine {
+  position: relative;
+  min-height: 100svh;
+  background-color: #0c0806;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  z-index: 2;
+  padding-top: 100px;
+}
+
+/* Bottom Dark Vignette */
+.hero-section-componine::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48svh;
+  background: linear-gradient(180deg, rgba(12, 8, 6, 0) 0%, rgba(12, 8, 6, 0.85) 60%, #0c0806 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Background Layers */
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-grid-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.65;
+  filter: contrast(1.15) brightness(0.9);
+}
+
+.hero-paper-texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.24;
+  mix-blend-mode: color-burn;
+}
+
+.hero-paper-texture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   4. RENAISSANCE FRESCO ARTWORK & SACRED GEOMETRY
+   -------------------------------------------------------------------------- */
+.hero-artwork-stage {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: calc(100% - 90px);
+  aspect-ratio: 1;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-god-figure {
+  position: absolute;
+  top: -38%;
+  left: -125%;
+  width: 195%;
+  height: auto;
+  aspect-ratio: 1;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-client-figure {
+  position: absolute;
+  top: -42%;
+  right: -90%;
+  width: 148%;
+  height: auto;
+  aspect-ratio: 1;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-god-figure img,
+.hero-client-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Celestial Geometry Center Circles */
+.hero-circle-stage {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: calc(100% - 160px);
+  aspect-ratio: 1;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.hero-sacred-rings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.floral-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  opacity: 0.38;
+}
+
+.floral-wrapper svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Rotating Star Crown */
+.hero-crown-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64%;
+  height: 64%;
+  z-index: 4;
+  animation: rotate 150s linear infinite;
+}
+
+.hero-crown-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Astrolabe Gear Dial */
+.hero-gear-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 95%;
+  opacity: 0.45;
+  border-radius: 50%;
+}
+
+.hero-gear-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   5. HERO CONTENT & MONUMENTAL HEADLINE
+   -------------------------------------------------------------------------- */
+.hero-content-container {
+  position: relative;
+  z-index: 9;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 32px 28px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: end;
+}
+
+.hero-title-column {
+  grid-column: 1 / 9;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Status Badge with Glowing AI Orb */
+.hero-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 5px 14px 5px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hero-status-ai {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hero-status-ai .ai-core {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe346 0%, #ff6200 70%, #d85400 100%);
+  box-shadow: 0 0 10px #ff9100;
+  animation: pulse-ai 2.5s ease-in-out infinite;
+}
+
+.hero-status-ai .ai-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  border-radius: 50%;
+  animation: ring-spin 8s linear infinite;
+}
+
+.hero-status-text {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #f0efea;
+  text-transform: uppercase;
+}
+
+/* Monumental Display Headline */
+.hero-monumental-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 5.2vw, 5.4rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* Two-Column Editorial Description */
+.hero-desc-column {
+  grid-column: 9 / 13;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 6px;
+}
+
+.hero-desc-lead {
+  font-family: var(--font-sans);
+  font-size: clamp(0.85rem, 1vw, 0.96rem);
+  line-height: 1.55;
+  color: rgba(240, 239, 234, 0.82);
+  margin: 0;
+}
+
+.hero-desc-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(0.8rem, 0.9vw, 0.88rem);
+  line-height: 1.55;
+  color: rgba(240, 239, 234, 0.52);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. INFINITE CLIENT & TECH LOGO TICKER
+   -------------------------------------------------------------------------- */
+.hero-ticker-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 24px 0 28px;
+  overflow: hidden;
+  mix-blend-mode: plus-lighter;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.hero-ticker-container:hover {
+  opacity: 0.85;
+}
+
+.hero-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+.hero-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.hero-ticker-set {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding-right: 56px;
+}
+
+.hero-ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.hero-ticker-item svg,
+.hero-ticker-item img {
+  height: 18px;
+  width: auto;
+  opacity: 0.85;
+  filter: grayscale(1) brightness(1.2);
+}
+
+/* --------------------------------------------------------------------------
+   7. PROGRESSIVE BLUR GRADIENT OVERLAYS
+   -------------------------------------------------------------------------- */
+.progressive-blur--bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.progressive-blur--bottom__layer {
+  position: absolute;
+  inset: 0;
+}
+
+.progressive-blur--bottom__layer:nth-child(1) {
+  backdrop-filter: blur(1px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
+}
+
+.progressive-blur--bottom__layer:nth-child(2) {
+  backdrop-filter: blur(4px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 40%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 40%, black 100%);
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .componine-nav-wrapper {
+    padding: 0 20px;
+    top: 16px;
+  }
+
+  .nav-item-link:nth-child(n+4) {
+    display: none;
+  }
+
+  .hero-content-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 24px 20px;
+  }
+
+  .hero-title-column {
+    grid-column: 1 / -1;
+  }
+
+  .hero-desc-column {
+    grid-column: 1 / -1;
+  }
+
+  .hero-monumental-title {
+    font-size: clamp(2rem, 7vw, 3.8rem);
+  }
+
+  .hero-artwork-stage {
+    height: 70%;
+    top: 15%;
+  }
+
+  .hero-god-figure {
+    top: -20%;
+    left: -70%;
+    width: 150%;
+  }
+
+  .hero-client-figure {
+    top: -25%;
+    right: -60%;
+    width: 130%;
+  }
+
+  .hero-ticker-set {
+    gap: 36px;
+    padding-right: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .componine-nav-wrapper {
+    padding: 0 16px;
+    top: 12px;
+  }
+
+  .nav-links-track {
+    display: none;
+  }
+
+  .cta-pill-button span {
+    display: none;
+  }
+
+  .cta-pill-button {
+    padding: 8px;
+  }
+
+  .hero-section-componine {
+    padding-top: 80px;
+  }
+
+  .hero-content-container {
+    padding: 0 16px 16px;
+  }
+
+  .hero-monumental-title {
+    font-size: 2.2rem;
+    line-height: 1.05;
+  }
+
+  .hero-artwork-stage {
+    width: 100vw;
+    height: auto;
+    top: 25%;
+  }
+
+  .hero-ticker-container {
+    padding: 16px 0 20px;
+  }
+}

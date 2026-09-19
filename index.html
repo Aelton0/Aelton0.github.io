@@ -12,63 +12,223 @@
   <link rel="stylesheet" href="assets/css/typography.css">
   <link rel="stylesheet" href="assets/css/grid.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/componine-hero.css">
 </head>
 <body class="theme-dark">
 
-  <!-- 01. EDITORIAL HEADER -->
-  <header class="site-header">
-    <div class="container-editorial flex-header" style="display: flex; align-items: baseline; justify-content: space-between;">
-      <div>
-        <a href="#hero" class="header-brand-title">Aelton SM</a>
-        <div class="header-brand-sub">DATA / SYSTEMS / ENGINEERING</div>
+  <!-- CINEMATIC PRELOADER OVERLAY (COMPONINE PATTERN) -->
+  <div class="loading-overlay" id="preloader" aria-hidden="true">
+    <div class="loading-panel-container">
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+      <div class="loading-panel-slice"></div>
+    </div>
+    <div class="loading-progress-container">
+      <div class="loading-top-line"></div>
+      <div class="loading-right-line"></div>
+      <div class="loading-percent" id="loading-percent">0%</div>
+    </div>
+    <div class="loading-words-clip" id="loading-words">
+      <div class="loading-word active" data-word="0">DATA SYSTEMS</div>
+      <div class="loading-word" data-word="1">PIPELINES</div>
+      <div class="loading-word" data-word="2">ARCHITECTURE</div>
+      <div class="loading-word" data-word="3">ENGINEERING</div>
+    </div>
+  </div>
+
+  <!-- FLOATING FROSTED GLASS NAVBAR (COMPONINE PATTERN) -->
+  <div class="componine-nav-wrapper">
+    <nav class="componine-nav">
+      <!-- Left Pill: Brand + Rolling Text Links -->
+      <div class="shadow-button nav-menu-pill">
+        <a href="#hero" class="nav-brand-logo" aria-label="Aelton SM - Home">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </a>
+        <div class="nav-links-track">
+          <a href="#hero" class="nav-item-link" aria-label="Index">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            <span class="rolling-text" data-rolling="Index">Index</span>
+          </a>
+          <a href="#works" class="nav-item-link" aria-label="Work">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            <span class="rolling-text" data-rolling="Work">Work</span>
+          </a>
+          <a href="#capabilities" class="nav-item-link" aria-label="Stack">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span class="rolling-text" data-rolling="Stack">Stack</span>
+          </a>
+          <a href="#about" class="nav-item-link" aria-label="About">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="rolling-text" data-rolling="About">About</span>
+          </a>
+          <a href="#contact" class="nav-item-link" aria-label="Contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span class="rolling-text" data-rolling="Contact">Contact</span>
+          </a>
+        </div>
       </div>
-      <nav style="display: flex; gap: 2.25rem;">
-        <a href="#works" class="nav-link">Work</a>
-        <a href="#capabilities" class="nav-link">Stack</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- 02. CINEMATIC HERO SECTION (100vh) -->
-  <section id="hero" class="hero-section">
-    <!-- Atmospheric Artwork Backdrop -->
-    <div class="hero-backdrop-container">
-      <img src="assets/images/hero/hero-architectural.svg" alt="" aria-hidden="true" style="width: 100%; height: 100%; object-fit: cover;">
+      <!-- Right Pill: CTA Button with Moving Halftone Glow -->
+      <div class="nav-cta-wrapper">
+        <a href="#contact" class="shadow-button cta-pill-button">
+          <div class="button-circles-wrapper">
+            <div class="moving-circle moving-circle-left"></div>
+            <div class="moving-circle moving-circle-right"></div>
+          </div>
+          <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span class="rolling-text" data-rolling="Talk with Aelton">Talk with Aelton</span>
+        </a>
+
+        <div class="shadow-button header-toggle-circle" role="button" aria-label="Menu" tabindex="0">
+          <div class="toggle-dots">
+            <div class="toggle-dot"></div>
+            <div class="toggle-dot"></div>
+            <div class="toggle-dot"></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 02. CINEMATIC HERO SECTION (COMPONINE PATTERN) -->
+  <section id="hero" class="hero-section-componine">
+    <!-- Atmospheric Artwork & Architecture Grid Backdrop -->
+    <div class="hero-grid-bg">
+      <img src="https://res.cloudinary.com/dp1zjwyvd/image/upload/f_auto,q_auto/v1778715978/Group_158_xmk5mh.avif" alt="" aria-hidden="true">
     </div>
 
-    <!-- Empty Spacer for Header Alignment -->
-    <div></div>
+    <!-- Paper Texture Overlay -->
+    <div class="hero-paper-texture">
+      <img src="https://res.cloudinary.com/dp1zjwyvd/image/upload/f_auto,q_auto/v1778715978/Group_196_aviyp4.avif" alt="" aria-hidden="true">
+    </div>
+
+    <!-- Classical Renaissance Fresco Figures (God left, Client right) -->
+    <div class="hero-artwork-stage" id="hero-artwork-stage">
+      <div class="hero-god-figure" id="hero-god">
+        <img src="https://res.cloudinary.com/dp1zjwyvd/image/upload/f_auto,q_auto/v1772110082/uoqcenteykm4omoilm5n_zcq104.avif" alt="" aria-hidden="true">
+      </div>
+      <div class="hero-client-figure" id="hero-client">
+        <img src="https://res.cloudinary.com/dp1zjwyvd/image/upload/f_auto,q_auto/v1772110082/xhphyzuvfa5hkjuwxw00_ovlw2g.avif" alt="" aria-hidden="true">
+      </div>
+    </div>
+
+    <!-- Celestial Geometry, Rotating Star Crown & Dial -->
+    <div class="hero-circle-stage">
+      <div class="hero-sacred-rings">
+        <div class="floral-wrapper">
+          <svg viewBox="0 0 2542 4498" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="866" cy="2249" r="405" stroke="white" stroke-width="1.2" opacity="0.3"></circle>
+            <circle cx="1676" cy="2249" r="405" stroke="white" stroke-width="1.2" opacity="0.3"></circle>
+            <circle cx="1271" cy="1844" r="405" stroke="white" stroke-width="1.2" opacity="0.3"></circle>
+            <circle cx="1271" cy="2654" r="405" stroke="white" stroke-width="1.2" opacity="0.3"></circle>
+            <circle cx="1270.5" cy="2249" r="850" stroke="white" stroke-width="1.2" opacity="0.25"></circle>
+            <circle cx="1270.5" cy="2249" r="1270" stroke="white" stroke-width="1.2" opacity="0.2"></circle>
+            <path d="M461 2249H2081" stroke="white" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.35"></path>
+            <path d="M1271 3059V1439" stroke="white" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.35"></path>
+            <path d="M698.242 2821.76L1843.76 1676.24" stroke="white" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.3"></path>
+            <path d="M698.242 1676.24L1843.76 2821.76" stroke="white" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.3"></path>
+          </svg>
+        </div>
+        <div class="hero-crown-ring">
+          <img src="assets/images/hero/crown-overlay.svg" alt="" aria-hidden="true">
+        </div>
+        <div class="hero-gear-ring">
+          <img src="assets/images/hero/gear.svg" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
 
     <!-- Main Editorial Hero Content -->
-    <div class="container-editorial hero-content">
-      <div class="text-meta" style="color: var(--color-muted); margin-bottom: 1.5rem;">
-        AELTON SM · DATA / SYSTEMS / ENGINEERING
+    <div class="hero-content-container">
+      <div class="hero-title-column">
+        <!-- Status Badge with Glowing AI Orb -->
+        <div class="hero-status-badge">
+          <div class="hero-status-ai">
+            <div class="ai-core"></div>
+            <div class="ai-ring"></div>
+          </div>
+          <span class="hero-status-text">Available For Production &amp; Projects</span>
+        </div>
+
+        <!-- Monumental Two-Line Headline -->
+        <h1 class="hero-monumental-title">
+          We Architect. We Build.<br>
+          We Scale Data Systems
+        </h1>
       </div>
 
-      <h1 class="display-hero hero-main-title">
-        I build data systems<br>
-        that make complex<br>
-        operations understandable.
-      </h1>
-
-      <div style="margin-top: 2rem;">
-        <a href="#works" class="editorial-btn">
-          <span>Scroll to explore</span>
-          <span>↓</span>
-        </a>
+      <!-- Right Editorial Column -->
+      <div class="hero-desc-column">
+        <p class="hero-desc-lead">
+          Engineering mission-critical analytics pipelines, scalable relational models, and resilient systems that turn complex operations into clarity.
+        </p>
+        <p class="hero-desc-sub">
+          All-in-one technical partner for SQL, Python workers, automated ETL, and data infrastructure. Fast, resilient, no drama.
+        </p>
       </div>
     </div>
 
-    <!-- Hero Technical Bottom Strip -->
-    <div class="container-editorial hero-footer-strip">
-      <div class="text-meta" style="color: var(--color-muted);">
-        ANALYTICS &nbsp;·&nbsp; DATA ENGINEERING &nbsp;·&nbsp; SQL &nbsp;·&nbsp; PYTHON &nbsp;·&nbsp; BI &nbsp;·&nbsp; SYSTEMS
+    <!-- Infinite Tech Stack / Client Logo Ticker -->
+    <div class="hero-ticker-container">
+      <div class="hero-ticker-track">
+        <div class="hero-ticker-set">
+          <div class="hero-ticker-item"><span>PYTHON</span></div>
+          <div class="hero-ticker-item"><span>POSTGRESQL</span></div>
+          <div class="hero-ticker-item"><span>MYSQL</span></div>
+          <div class="hero-ticker-item"><span>DOCKER</span></div>
+          <div class="hero-ticker-item"><span>LINUX</span></div>
+          <div class="hero-ticker-item"><span>POWER BI</span></div>
+          <div class="hero-ticker-item"><span>APACHE AIRFLOW</span></div>
+          <div class="hero-ticker-item"><span>PROXMOX</span></div>
+          <div class="hero-ticker-item"><span>DUCKDB</span></div>
+          <div class="hero-ticker-item"><span>METABASE</span></div>
+          <div class="hero-ticker-item"><span>GIT &amp; DEVOPS</span></div>
+          <div class="hero-ticker-item"><span>REST APIS</span></div>
+        </div>
+        <!-- Duplicate for infinite seamless marquee loop -->
+        <div class="hero-ticker-set" aria-hidden="true">
+          <div class="hero-ticker-item"><span>PYTHON</span></div>
+          <div class="hero-ticker-item"><span>POSTGRESQL</span></div>
+          <div class="hero-ticker-item"><span>MYSQL</span></div>
+          <div class="hero-ticker-item"><span>DOCKER</span></div>
+          <div class="hero-ticker-item"><span>LINUX</span></div>
+          <div class="hero-ticker-item"><span>POWER BI</span></div>
+          <div class="hero-ticker-item"><span>APACHE AIRFLOW</span></div>
+          <div class="hero-ticker-item"><span>PROXMOX</span></div>
+          <div class="hero-ticker-item"><span>DUCKDB</span></div>
+          <div class="hero-ticker-item"><span>METABASE</span></div>
+          <div class="hero-ticker-item"><span>GIT &amp; DEVOPS</span></div>
+          <div class="hero-ticker-item"><span>REST APIS</span></div>
+        </div>
       </div>
-      <div class="text-meta" style="color: var(--color-muted);">
-        BASED IN BRAZIL &nbsp;·&nbsp; AVAILABLE FOR PRODUCTION ROLES
-      </div>
+    </div>
+
+    <!-- Soft Edge Blur -->
+    <div class="progressive-blur--bottom" aria-hidden="true">
+      <div class="progressive-blur--bottom__layer"></div>
+      <div class="progressive-blur--bottom__layer"></div>
     </div>
   </section>
 
