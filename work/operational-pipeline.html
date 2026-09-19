@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operational Data Pipeline — Case 01 — Aelton SM</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/kraken-symbol.svg">
+
+  <!-- Editorial CSS Suite -->
+  <link rel="stylesheet" href="../assets/css/reset.css">
+  <link rel="stylesheet" href="../assets/css/typography.css">
+  <link rel="stylesheet" href="../assets/css/grid.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="theme-paper" style="background-color: var(--color-paper); color: var(--color-ink);">
+
+  <!-- Editorial Article Header -->
+  <header style="border-bottom: 1px solid var(--color-line); padding: 2rem 0;">
+    <div class="container-editorial" style="display: flex; align-items: baseline; justify-content: space-between;">
+      <a href="../index.html" class="header-brand-title" style="color: var(--color-ink);">AELTON SM / WORK</a>
+      <a href="../index.html#works" class="nav-link" style="color: var(--color-ink);">← Back to Selected Works</a>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="container-editorial" style="padding-top: 5rem; padding-bottom: 8rem; max-width: 960px;">
+
+    <!-- Case Meta -->
+    <div style="margin-bottom: 3rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">
+        CASE 01 / DATA ENGINEERING & INTEGRATION
+      </div>
+      <h1 class="font-serif" style="font-size: clamp(2.75rem, 6vw, 5.5rem); line-height: 0.98; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 1.5rem;">
+        Operational Data Pipeline
+      </h1>
+      <p class="text-editorial-lead" style="color: var(--color-muted-light);">
+        Architecture for transforming operational inbound data into a structured analytical layer with zero endpoint vulnerability leakage.
+      </p>
+    </div>
+
+    <!-- Main Architectural Visual Plate -->
+    <div class="case-image-plate" style="margin-bottom: 4rem;">
+      <img src="../assets/images/projects/case-01-pipeline.svg" alt="Operational Pipeline Architectural Schematic">
+    </div>
+
+    <!-- 01. Context & The Problem -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">01 / THE CONTEXT & PROBLEM</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 1.5rem;">The Vulnerability of Operational Ingestion</h2>
+      <p class="font-sans" style="font-size: 1rem; line-height: 1.7; color: var(--color-charcoal); margin-bottom: 1.5rem;">
+        Commercial websites capture leads through webhooks. In typical setups, endpoint URLs, routing keys, or database structures are accidentally exposed to client-side inspect tools, making webhooks prone to DDoS, spam poisoning, or database connection exhaustion.
+      </p>
+      <p class="font-sans" style="font-size: 1rem; line-height: 1.7; color: var(--color-charcoal);">
+        The requirement was to engineer a decoupled layer: the client interacts with an obfuscated gateway that validates TLS signatures, processes the payload asynchronously via Python workers, persists the clean record into relational storage with strict idempotency, and pushes verified events to the ERP API.
+      </p>
+    </section>
+
+    <!-- 02. Architecture & Pipeline Stages -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">02 / ARCHITECTURAL STAGES</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 2rem;">End-to-End Information Flow</h2>
+
+      <div style="background-color: var(--color-warm-white); border: 1px solid var(--color-line); padding: 2rem; margin-bottom: 2rem; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.8; color: var(--color-charcoal);">
+        CLIENT WEB FORM (Inbound Event)<br>
+        &nbsp;&nbsp;↓ (POST sanitized JSON)<br>
+        OBFUSCATED GATEWAY (Signature Verification)<br>
+        &nbsp;&nbsp;↓<br>
+        PYTHON WORKER (Schema Validation & SHA-256 Hash Computation)<br>
+        &nbsp;&nbsp;↓<br>
+        RELATIONAL STORE (ON CONFLICT DO NOTHING — Idempotent Persistence)<br>
+        &nbsp;&nbsp;↓<br>
+        ERP REST API SYNC (Automated Lead & Opportunity Creation)
+      </div>
+    </section>
+
+    <!-- 03. Engineering Decisions & Trade-offs -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">03 / ENGINEERING DECISIONS & TRADE-OFFS</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 1.5rem;">Decisions, Trade-offs & Scale</h2>
+
+      <div class="grid-12" style="gap: 2.5rem;">
+        <div class="col-span-6">
+          <h3 class="font-sans" style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">Why Idempotency Keys?</h3>
+          <p class="font-sans" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.6;">
+            Users frequently double-click submission buttons or webhooks retry upon transient network timeouts. Computing a deterministic SHA-256 hash across canonical identity fields guaranteed zero duplicated records in the CRM, saving hundreds of hours of manual deduplication.
+          </p>
+        </div>
+
+        <div class="col-span-6">
+          <h3 class="font-sans" style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">What Would Change at Scale?</h3>
+          <p class="font-sans" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.6;">
+            For volumes exceeding 50,000 daily events, synchronous Python execution would be decoupled into a Redis/Celery queue. This isolates the public gateway from external ERP API timeouts and protects transactional databases from traffic spikes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. Technical Implementation -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">04 / CODE IMPLEMENTATION</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 1.5rem;">Deterministic Python Worker</h2>
+
+      <div style="background-color: var(--color-ink); color: var(--color-warm-white); border: 1px solid var(--color-line-dark); padding: 2rem; border-radius: 4px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6;">
+<pre><code>import hashlib
+import json
+from typing import Dict, Any
+
+def generate_idempotency_key(payload: Dict[str, Any]) -> str:
+    """Computes deterministic SHA-256 hash across canonicalized identity fields."""
+    normalized_identity = f"{payload.get('email', '').strip().lower()}:{payload.get('created_date', '')}"
+    return hashlib.sha256(normalized_identity.encode('utf-8')).hexdigest()
+
+def process_inbound_lead(raw_payload: Dict[str, Any], db_conn) -> bool:
+    # 1. Schema enforcement
+    required = ['name', 'email', 'phone', 'company_size']
+    if not all(k in raw_payload for k in required):
+        raise ValueError("Malformed payload: Schema constraint violation")
+
+    idempotency_key = generate_idempotency_key(raw_payload)
+
+    # 2. Idempotent persistence
+    query = """
+    INSERT INTO inbound_leads (idempotency_hash, full_name, email, phone, metadata)
+    VALUES (%s, %s, %s, %s, %s)
+    ON CONFLICT (idempotency_hash) DO NOTHING
+    RETURNING id;
+    """
+    with db_conn.cursor() as cur:
+        cur.execute(query, (
+            idempotency_key,
+            raw_payload['name'].strip(),
+            raw_payload['email'].strip().lower(),
+            raw_payload['phone'].strip(),
+            json.dumps(raw_payload.get('extra', {}))
+        ))
+        inserted = cur.fetchone()
+        db_conn.commit()
+        return inserted is not None</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <div style="border-top: 1px solid var(--color-line); padding-top: 3rem; display: flex; justify-content: space-between; align-items: baseline;">
+      <a href="../index.html#works" class="editorial-btn">← Back to Overview</a>
+      <a href="revenue-analysis.html" class="editorial-btn">Next Case: Revenue Risk Analysis →</a>
+    </div>
+
+  </main>
+
+  <footer style="border-top: 1px solid var(--color-line); padding: 3rem 0; background-color: var(--color-warm-white);">
+    <div class="container-editorial" style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-muted-light);">
+      <div>AELTON SM · DATA / SYSTEMS / ENGINEERING</div>
+      <div>© 2026 ALL RIGHTS RESERVED</div>
+    </div>
+  </footer>
+
+</body>
+</html>

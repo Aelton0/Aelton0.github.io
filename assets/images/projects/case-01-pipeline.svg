@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 787" width="100%" height="100%">
+  <!-- Editorial Architecture Plate: Operational Data Pipeline -->
+  <defs>
+    <linearGradient id="paperBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ECEAE3" />
+      <stop offset="100%" stop-color="#E2DFD6" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1400" height="787" fill="url(#paperBg)" />
+
+  <!-- Outer Editorial Border & Hairlines -->
+  <rect x="40" y="40" width="1320" height="707" fill="none" stroke="#CCC9BE" stroke-width="1" />
+  <line x1="40" y1="100" x2="1360" y2="100" stroke="#CCC9BE" stroke-width="1" />
+  <line x1="40" y1="687" x2="1360" y2="687" stroke="#CCC9BE" stroke-width="1" />
+
+  <!-- Header Plate Details -->
+  <text x="60" y="76" font-family="'Fira Code', monospace" font-size="12" fill="#6E6250" letter-spacing="0.1em">PLATE 01.A — OPERATIONAL PIPELINE SCHEMATIC</text>
+  <text x="1150" y="76" font-family="'Fira Code', monospace" font-size="12" fill="#918F87" letter-spacing="0.1em">FIG. 2026.01 / DATA SYSTEMS</text>
+
+  <!-- Architectural Pipeline Diagram -->
+  <g transform="translate(100, 160)">
+    <!-- Stage 1: Ingestion Origin -->
+    <rect x="50" y="110" width="220" height="230" fill="#F7F6F1" stroke="#22201C" stroke-width="1.5" />
+    <line x1="50" y1="150" x2="270" y2="150" stroke="#D8D6CF" stroke-width="1" />
+    <text x="70" y="136" font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#0A0907" letter-spacing="0.05em">01. CAPTURE &amp; GATEWAY</text>
+    <text x="70" y="185" font-family="'Fira Code', monospace" font-size="11" fill="#6E6250">HTTP POST /webhook</text>
+    <text x="70" y="210" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">TLS 1.3 / HMAC Sig</text>
+    <text x="70" y="235" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Payload: JSON Schema</text>
+    <text x="70" y="290" font-family="'Fira Code', monospace" font-size="10" fill="#22201C">STATE: OBFUSCATED 200</text>
+
+    <!-- Connector 1-2 -->
+    <line x1="270" y1="225" x2="370" y2="225" stroke="#22201C" stroke-width="1.5" />
+    <polygon points="370,225 360,220 360,230" fill="#22201C" />
+
+    <!-- Stage 2: Processing & Sanitization Worker -->
+    <rect x="370" y="90" width="260" height="270" fill="#F7F6F1" stroke="#22201C" stroke-width="1.5" />
+    <line x1="370" y1="130" x2="630" y2="130" stroke="#D8D6CF" stroke-width="1" />
+    <text x="390" y="116" font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#0A0907" letter-spacing="0.05em">02. WORKER SANITIZATION</text>
+    <text x="390" y="165" font-family="'Fira Code', monospace" font-size="11" fill="#6E6250">Python 3.12 / Custom</text>
+    <text x="390" y="195" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">SHA-256 Idempotency Key</text>
+    <text x="390" y="225" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">String Normalization</text>
+    <text x="390" y="255" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Null Check / Typing</text>
+    <text x="390" y="315" font-family="'Fira Code', monospace" font-size="10" fill="#22201C">TRANSFORMATION: ATOMIC</text>
+
+    <!-- Connector 2-3 -->
+    <line x1="630" y1="225" x2="730" y2="225" stroke="#22201C" stroke-width="1.5" />
+    <polygon points="730,225 720,220 720,230" fill="#22201C" />
+
+    <!-- Stage 3: Relational Persistence -->
+    <rect x="730" y="110" width="220" height="230" fill="#F7F6F1" stroke="#22201C" stroke-width="1.5" />
+    <line x1="730" y1="150" x2="950" y2="150" stroke="#D8D6CF" stroke-width="1" />
+    <text x="750" y="136" font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#0A0907" letter-spacing="0.05em">03. RELATIONAL STORE</text>
+    <text x="750" y="185" font-family="'Fira Code', monospace" font-size="11" fill="#6E6250">PostgreSQL / MySQL</text>
+    <text x="750" y="210" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">ON CONFLICT DO NOTHING</text>
+    <text x="750" y="235" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Indexed Hash Key</text>
+    <text x="750" y="290" font-family="'Fira Code', monospace" font-size="10" fill="#22201C">INTEGRITY: COMMITTED</text>
+
+    <!-- Connector 3-4 -->
+    <line x1="950" y1="225" x2="1040" y2="225" stroke="#22201C" stroke-width="1.5" />
+    <polygon points="1040,225 1030,220 1030,230" fill="#22201C" />
+
+    <!-- Stage 4: ERP/CRM Integration -->
+    <rect x="1040" y="125" width="160" height="200" fill="#15130F" stroke="#22201C" stroke-width="1.5" />
+    <line x1="1040" y1="165" x2="1200" y2="165" stroke="#33302A" stroke-width="1" />
+    <text x="1055" y="150" font-family="'Inter', sans-serif" font-weight="600" font-size="12" fill="#F7F6F1">04. ERP SYNC</text>
+    <text x="1055" y="195" font-family="'Fira Code', monospace" font-size="10" fill="#A8A59C">REST API POST</text>
+    <text x="1055" y="225" font-family="'Fira Code', monospace" font-size="10" fill="#A8A59C">Auth: Bearer</text>
+    <text x="1055" y="275" font-family="'Fira Code', monospace" font-size="10" fill="#6E6250">HTTP 201 CREATED</text>
+  </g>
+
+  <!-- Technical Legend Footer -->
+  <text x="60" y="715" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">SYS-REF: E2E-INGEST-01 / ZERO VULNERABILITY LEAK / IDEMPOTENT RUNS</text>
+  <text x="1250" y="715" font-family="'Fira Code', monospace" font-size="11" fill="#6E6250">100% AUDITED</text>
+</svg>

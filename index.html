@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aelton SM — Data / Systems / Engineering</title>
+  <meta name="description" content="I build data systems that make complex operations understandable. Analytics engineering, systems architecture and data infrastructure.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/kraken-symbol.svg">
+
+  <!-- Editorial CSS Suite -->
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/grid.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="theme-dark">
+
+  <!-- 01. EDITORIAL HEADER -->
+  <header class="site-header">
+    <div class="container-editorial flex-header" style="display: flex; align-items: baseline; justify-content: space-between;">
+      <div>
+        <a href="#hero" class="header-brand-title">Aelton SM</a>
+        <div class="header-brand-sub">DATA / SYSTEMS / ENGINEERING</div>
+      </div>
+      <nav style="display: flex; gap: 2.25rem;">
+        <a href="#works" class="nav-link">Work</a>
+        <a href="#capabilities" class="nav-link">Stack</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 02. CINEMATIC HERO SECTION (100vh) -->
+  <section id="hero" class="hero-section">
+    <!-- Atmospheric Artwork Backdrop -->
+    <div class="hero-backdrop-container">
+      <img src="assets/images/hero/hero-architectural.svg" alt="" aria-hidden="true" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <!-- Empty Spacer for Header Alignment -->
+    <div></div>
+
+    <!-- Main Editorial Hero Content -->
+    <div class="container-editorial hero-content">
+      <div class="text-meta" style="color: var(--color-muted); margin-bottom: 1.5rem;">
+        AELTON SM · DATA / SYSTEMS / ENGINEERING
+      </div>
+
+      <h1 class="display-hero hero-main-title">
+        I build data systems<br>
+        that make complex<br>
+        operations understandable.
+      </h1>
+
+      <div style="margin-top: 2rem;">
+        <a href="#works" class="editorial-btn">
+          <span>Scroll to explore</span>
+          <span>↓</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Technical Bottom Strip -->
+    <div class="container-editorial hero-footer-strip">
+      <div class="text-meta" style="color: var(--color-muted);">
+        ANALYTICS &nbsp;·&nbsp; DATA ENGINEERING &nbsp;·&nbsp; SQL &nbsp;·&nbsp; PYTHON &nbsp;·&nbsp; BI &nbsp;·&nbsp; SYSTEMS
+      </div>
+      <div class="text-meta" style="color: var(--color-muted);">
+        BASED IN BRAZIL &nbsp;·&nbsp; AVAILABLE FOR PRODUCTION ROLES
+      </div>
+    </div>
+  </section>
+
+  <!-- 03. SELECTED WORKS SECTION (PAPER THEME #F1F0EA — ONE PROJECT AT A TIME) -->
+  <section id="works" class="theme-paper selected-works-section">
+    <!-- Fine 12-Column Editorial Grid Lines Overlay -->
+    <div class="paper-grid-lines" aria-hidden="true">
+      <div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div>
+    </div>
+
+    <div class="container-editorial" style="position: relative; z-index: 5;">
+
+      <!-- Monumental Section Heading -->
+      <div class="selected-works-heading">
+        <h2 class="display-monumental">SELECTED<br>WORKS</h2>
+      </div>
+
+      <!-- PROJECT 01: OPERATIONAL DATA PIPELINE -->
+      <article class="editorial-case">
+        <div class="case-meta-header">
+          <span class="text-meta" style="color: var(--color-signal);">01 / DATA ENGINEERING</span>
+          <span class="text-meta" style="color: var(--color-muted-light);">SQL · PYTHON · MYSQL · ETL</span>
+        </div>
+
+        <h3 class="display-case-title" style="margin-bottom: 2rem;">
+          Operational Data Pipeline
+        </h3>
+
+        <!-- Large Image Plate -->
+        <div class="case-image-plate">
+          <img src="assets/images/projects/case-01-pipeline.svg" alt="Operational Pipeline Architectural Schematic">
+        </div>
+
+        <div class="grid-12" style="align-items: baseline;">
+          <div class="col-span-8">
+            <p class="text-editorial-lead" style="color: var(--color-charcoal);">
+              Architecture for transforming operational data into a structured analytical layer.
+              Decoupled ingestion capturing external webhooks securely, validating schemas with Python workers, and persisting idempotently in relational stores with automated sync.
+            </p>
+          </div>
+          <div class="col-span-4" style="text-align: right;">
+            <a href="work/operational-pipeline.html" class="editorial-btn">
+              <span>View Case</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Horizontal Divider between Cases -->
+      <div style="border-top: 1px solid var(--color-line); margin: 7rem 0;"></div>
+
+      <!-- PROJECT 02: REVENUE RISK ANALYSIS -->
+      <article class="editorial-case">
+        <div class="case-meta-header">
+          <span class="text-meta" style="color: var(--color-signal);">02 / ANALYTICS</span>
+          <span class="text-meta" style="color: var(--color-muted-light);">SQL · STATISTICS · DATA MODELING</span>
+        </div>
+
+        <h3 class="display-case-title" style="margin-bottom: 2rem;">
+          Revenue Risk Analysis
+        </h3>
+
+        <!-- Large Image Plate -->
+        <div class="case-image-plate">
+          <img src="assets/images/projects/case-02-statistical.svg" alt="Revenue Risk Statistical Distribution Model">
+        </div>
+
+        <div class="grid-12" style="align-items: baseline;">
+          <div class="col-span-8">
+            <p class="text-editorial-lead" style="color: var(--color-charcoal);">
+              A statistical analysis designed to identify revenue concentration and customer risk.
+              Replaced distorted arithmetic means with non-parametric median clustering and cumulative Pareto curves, exposing existential financial exposure previously masked by high-ticket outliers.
+            </p>
+          </div>
+          <div class="col-span-4" style="text-align: right;">
+            <a href="work/revenue-analysis.html" class="editorial-btn">
+              <span>View Case</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 04. WHAT I BUILD / CAPABILITIES (HUMAN EDITORIAL COMPOSITION) -->
+  <section id="capabilities" class="theme-paper capabilities-section">
+    <div class="container-editorial">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 3rem;">
+        WHAT I BUILD & OPERATE
+      </div>
+
+      <div class="grid-12">
+        <!-- 01 Data Engineering -->
+        <div class="col-span-3 capability-item">
+          <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">01</div>
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Data Engineering</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+            SQL, Python, resilient ETL pipelines, relational data modeling, schema migrations, analytical storage.
+          </p>
+        </div>
+
+        <!-- 02 Analytics -->
+        <div class="col-span-3 capability-item">
+          <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">02</div>
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Analytics</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+            Power BI, statistical analysis, KPI definition, customer portfolio segmentation, business metrics.
+          </p>
+        </div>
+
+        <!-- 03 Systems -->
+        <div class="col-span-3 capability-item">
+          <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">03</div>
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Systems</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+            Linux environments, Docker containers, Git versioning, webhook receivers, REST API integrations.
+          </p>
+        </div>
+
+        <!-- 04 Infrastructure -->
+        <div class="col-span-3 capability-item">
+          <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">04</div>
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Infrastructure</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+            Monitoring, self-hosted services, Proxmox virtualization, networking fundamentals, observability.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05. DARK INTERLUDE & FLAGSHIP FEATURE (THE WORK) -->
+  <section class="dark-interlude-section">
+    <div class="container-editorial">
+
+      <!-- Header Interlude -->
+      <div style="padding-bottom: 3rem; border-bottom: 1px solid var(--color-line-dark); margin-bottom: 5rem;">
+        <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">THE WORK</div>
+        <div class="font-serif" style="font-size: clamp(2rem, 4vw, 4rem); text-transform: uppercase; line-height: 1;">
+          Data / Systems / Analytics / Engineering
+        </div>
+      </div>
+
+      <!-- Interactive Disciplines Explorer (Componine Pattern) -->
+      <div class="grid-12" style="align-items: center; margin-bottom: 8rem;">
+        <div class="col-span-5">
+          <div class="discipline-preview-box">
+            <img id="discipline-preview-img" src="assets/images/projects/case-01-pipeline.svg" alt="Discipline Architecture Preview">
+          </div>
+        </div>
+
+        <div class="col-span-7" style="padding-left: 2rem;">
+          <div class="discipline-nav-list">
+            <div class="discipline-item active" data-num="01">
+              <span class="discipline-item-title">Data Pipelines</span>
+              <span class="discipline-item-num">01</span>
+            </div>
+            <div class="discipline-item" data-num="02">
+              <span class="discipline-item-title">Statistical Analytics</span>
+              <span class="discipline-item-num">02</span>
+            </div>
+            <div class="discipline-item" data-num="03">
+              <span class="discipline-item-title">Dimensional Warehouses</span>
+              <span class="discipline-item-num">03</span>
+            </div>
+            <div class="discipline-item" data-num="04">
+              <span class="discipline-item-title">Systems &amp; Automation</span>
+              <span class="discipline-item-num">04</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal Divider -->
+      <div style="border-top: 1px solid var(--color-line-dark); margin-bottom: 6rem;"></div>
+
+      <!-- Flagship Feature -->
+      <article>
+        <div class="case-meta-header">
+          <span class="text-meta" style="color: var(--color-signal);">PROJECT 01 · FLAGSHIP</span>
+          <span class="text-meta" style="color: var(--color-muted);">SQL / MYSQL / ETL / MODELING</span>
+        </div>
+
+        <h3 class="display-case-title" style="margin-bottom: 2rem;">
+          Operational Data Warehouse
+        </h3>
+
+        <!-- Large Image Plate -->
+        <div class="case-image-plate">
+          <img src="assets/images/projects/flagship-warehouse.svg" alt="Operational Data Warehouse Architecture Schematic">
+        </div>
+
+        <div class="grid-12" style="align-items: baseline;">
+          <div class="col-span-8">
+            <p class="text-editorial-lead" style="color: var(--color-muted);">
+              The project transforms operational data into a structured analytical architecture designed for reporting and business analysis.
+              Eliminating analytical query overhead on production transactional databases and establishing audit-proof dimensional history.
+            </p>
+          </div>
+          <div class="col-span-4" style="text-align: right;">
+            <a href="work/operational-pipeline.html" class="editorial-btn">
+              <span>Explore Project</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 06. ABOUT AELTON & TIMELINE (PAPER THEME) -->
+  <section id="about" class="theme-paper about-section">
+    <div class="container-editorial">
+      <div class="grid-12">
+
+        <!-- Narrative Column -->
+        <div class="col-span-7">
+          <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2rem;">
+            ABOUT AELTON
+          </div>
+
+          <p class="font-serif" style="font-size: clamp(1.75rem, 3vw, 3rem); line-height: 1.25; margin-bottom: 2.5rem; color: var(--color-ink);">
+            I work at the intersection of data, systems and business.
+          </p>
+
+          <p class="font-sans" style="font-size: 1rem; color: var(--color-charcoal); line-height: 1.7; max-width: 580px; margin-bottom: 2.5rem;">
+            My focus is understanding how information moves through a company — from operational systems and messy edge integrations to structured analytical decisions. I engineer systems that prioritize resilience and clarity over superficial complexity.
+          </p>
+
+          <div class="text-meta" style="color: var(--color-muted-light);">
+            BASED IN BRAZIL &nbsp;·&nbsp; DATA / SYSTEMS / ENGINEERING / ANALYTICS
+          </div>
+        </div>
+
+        <!-- Minimalist Timeline Column -->
+        <div class="col-span-5" style="border-left: 1px solid var(--color-line); padding-left: 3rem;">
+          <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2rem;">
+            TIMELINE
+          </div>
+
+          <div class="timeline-entry">
+            <div class="timeline-year">2026</div>
+            <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
+              DATA / SYSTEMS / DEVOPS
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Pipelines & Infrastructure</div>
+            </div>
+          </div>
+
+          <div class="timeline-entry">
+            <div class="timeline-year">2025</div>
+            <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
+              PRODUCT / BUSINESS ANALYTICS
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Startup Growth & Risk Auditing</div>
+            </div>
+          </div>
+
+          <div class="timeline-entry">
+            <div class="timeline-year">2023</div>
+            <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
+              TECHNICAL CONSULTING
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Data Operations & BI</div>
+            </div>
+          </div>
+
+          <div class="timeline-entry">
+            <div class="timeline-year">2020</div>
+            <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
+              ELECTRONICS / SYSTEMS
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Hardware & Logic Foundations</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 07. CLOSING / CONTACT (DARK EDITORIAL CLOSING) -->
+  <footer id="contact" class="closing-section">
+    <div class="container-editorial">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2.5rem;">
+        05 / CONTACT
+      </div>
+
+      <div class="closing-huge-type">
+        LET'S<br>
+        BUILD<br>
+        SOMETHING<br>
+        USEFUL.
+      </div>
+
+      <div class="contact-links-strip">
+        <a href="mailto:aelton.sm@dev.br" class="contact-link">Email</a>
+        <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn ↗</a>
+        <a href="https://github.com/Aelton0" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub ↗</a>
+        <a href="assets/docs/aelton-sm-resume.pdf" class="contact-link" download>Download CV ↓</a>
+      </div>
+
+      <div class="footer-mini">
+        <div>AELTON SM &nbsp;·&nbsp; DATA / SYSTEMS / ENGINEERING</div>
+        <div>© <span id="year">2026</span> ALL RIGHTS RESERVED</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Clean Essential JavaScript -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

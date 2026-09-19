@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 787" width="100%" height="100%">
+  <!-- Dark Editorial Plate: Operational Data Warehouse Architecture -->
+  <rect width="1400" height="787" fill="#15130F" />
+
+  <!-- Outer Editorial Border & Hairlines -->
+  <rect x="40" y="40" width="1320" height="707" fill="none" stroke="#25221C" stroke-width="1" />
+  <line x1="40" y1="100" x2="1360" y2="100" stroke="#25221C" stroke-width="1" />
+  <line x1="40" y1="687" x2="1360" y2="687" stroke="#25221C" stroke-width="1" />
+
+  <!-- Header Plate Details -->
+  <text x="60" y="76" font-family="'Fira Code', monospace" font-size="12" fill="#6E6250" letter-spacing="0.1em">PLATE 03.C — CENTRALIZED ANALYTICAL ARCHITECTURE (WAREHOUSE)</text>
+  <text x="1140" y="76" font-family="'Fira Code', monospace" font-size="12" fill="#918F87" letter-spacing="0.1em">FIG. 2026.03 / SYSTEMS</text>
+
+  <!-- Large Dimensional Model Diagram -->
+  <g transform="translate(100, 150)">
+    <!-- Column 1: Sources -->
+    <rect x="40" y="60" width="200" height="340" fill="#1C1914" stroke="#2F2B24" stroke-width="1" />
+    <text x="60" y="95" font-family="'Inter', sans-serif" font-weight="600" font-size="12" fill="#F7F6F1">SOURCE OLTP</text>
+    <text x="60" y="140" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Production MySQL</text>
+    <text x="60" y="170" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Transactional Postgres</text>
+    <text x="60" y="200" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">External APIs / ERP</text>
+    <text x="60" y="230" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Inbound Webhooks</text>
+    <line x1="60" y1="280" x2="220" y2="280" stroke="#25221C" stroke-width="1" />
+    <text x="60" y="320" font-family="'Fira Code', monospace" font-size="10" fill="#6E6250">EXTRACTION: SCHEDULED &amp; REAL-TIME</text>
+
+    <!-- Connector 1-2 -->
+    <line x1="240" y1="230" x2="340" y2="230" stroke="#403A31" stroke-width="1.5" />
+    <polygon points="340,230 330,225 330,235" fill="#403A31" />
+
+    <!-- Column 2: Ingestion & Staging (Python / ELT) -->
+    <rect x="340" y="60" width="220" height="340" fill="#1C1914" stroke="#2F2B24" stroke-width="1" />
+    <text x="360" y="95" font-family="'Inter', sans-serif" font-weight="600" font-size="12" fill="#F7F6F1">INGESTION &amp; STAGING</text>
+    <text x="360" y="140" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">raw_schema (Immutable)</text>
+    <text x="360" y="170" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Audit Timestamping</text>
+    <text x="360" y="200" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Source Row Hashing</text>
+    <text x="360" y="230" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Null Value Cleansing</text>
+    <line x1="360" y1="280" x2="540" y2="280" stroke="#25221C" stroke-width="1" />
+    <text x="360" y="320" font-family="'Fira Code', monospace" font-size="10" fill="#6E6250">PARITY: 1:1 REPLICATION</text>
+
+    <!-- Connector 2-3 -->
+    <line x1="560" y1="230" x2="660" y2="230" stroke="#403A31" stroke-width="1.5" />
+    <polygon points="660,230 650,225 650,235" fill="#403A31" />
+
+    <!-- Column 3: Dimensional Warehouse Core -->
+    <rect x="660" y="40" width="260" height="380" fill="#0A0907" stroke="#6E6250" stroke-width="1.5" />
+    <text x="680" y="80" font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#F7F6F1">ANALYTICAL WAREHOUSE</text>
+    
+    <!-- Star Schema Sub-boxes -->
+    <rect x="680" y="110" width="220" height="70" fill="#1C1914" stroke="#2F2B24" stroke-width="1" />
+    <text x="695" y="135" font-family="'Fira Code', monospace" font-size="11" fill="#F7F6F1">dim_clients (SCD 2)</text>
+    <text x="695" y="155" font-family="'Fira Code', monospace" font-size="9" fill="#918F87">client_sk, segment, tier, active</text>
+
+    <rect x="680" y="195" width="220" height="90" fill="#252018" stroke="#6E6250" stroke-width="1" />
+    <text x="695" y="220" font-family="'Fira Code', monospace" font-size="11" fill="#F7F6F1">fact_revenue_events</text>
+    <text x="695" y="240" font-family="'Fira Code', monospace" font-size="9" fill="#D8D6CF">client_sk, date_id, net_amt</text>
+    <text x="695" y="260" font-family="'Fira Code', monospace" font-size="9" fill="#918F87">Grain: 1 invoice line per transaction</text>
+
+    <rect x="680" y="300" width="220" height="60" fill="#1C1914" stroke="#2F2B24" stroke-width="1" />
+    <text x="695" y="325" font-family="'Fira Code', monospace" font-size="11" fill="#F7F6F1">dim_calendar</text>
+    <text x="695" y="345" font-family="'Fira Code', monospace" font-size="9" fill="#918F87">date_id, fiscal_year, is_biz_day</text>
+
+    <!-- Connector 3-4 -->
+    <line x1="920" y1="230" x2="1020" y2="230" stroke="#403A31" stroke-width="1.5" />
+    <polygon points="1020,230 1010,225 1010,235" fill="#403A31" />
+
+    <!-- Column 4: Semantic Layer & BI -->
+    <rect x="1020" y="60" width="180" height="340" fill="#1C1914" stroke="#2F2B24" stroke-width="1" />
+    <text x="1040" y="95" font-family="'Inter', sans-serif" font-weight="600" font-size="12" fill="#F7F6F1">BI CONSUMPTION</text>
+    <text x="1040" y="140" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Power BI Datamarts</text>
+    <text x="1040" y="170" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Executive Looker</text>
+    <text x="1040" y="200" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">DAX Measures</text>
+    <text x="1040" y="230" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">Operational Alerts</text>
+    <line x1="1040" y1="280" x2="1180" y2="280" stroke="#25221C" stroke-width="1" />
+    <text x="1040" y="320" font-family="'Fira Code', monospace" font-size="10" fill="#6E6250">QUERY: SUB-SECOND DW</text>
+  </g>
+
+  <!-- Technical Legend Footer -->
+  <text x="60" y="715" font-family="'Fira Code', monospace" font-size="11" fill="#918F87">PATTERN: KIMBALL DIMENSIONAL MODEL / IDEMPOTENT ELT PIPELINES</text>
+  <text x="1230" y="715" font-family="'Fira Code', monospace" font-size="11" fill="#6E6250">SYSTEM STABLE</text>
+</svg>

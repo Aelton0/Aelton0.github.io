@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revenue Risk Analysis — Case 02 — Aelton SM</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/kraken-symbol.svg">
+
+  <!-- Editorial CSS Suite -->
+  <link rel="stylesheet" href="../assets/css/reset.css">
+  <link rel="stylesheet" href="../assets/css/typography.css">
+  <link rel="stylesheet" href="../assets/css/grid.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="theme-paper" style="background-color: var(--color-paper); color: var(--color-ink);">
+
+  <!-- Editorial Article Header -->
+  <header style="border-bottom: 1px solid var(--color-line); padding: 2rem 0;">
+    <div class="container-editorial" style="display: flex; align-items: baseline; justify-content: space-between;">
+      <a href="../index.html" class="header-brand-title" style="color: var(--color-ink);">AELTON SM / WORK</a>
+      <a href="../index.html#works" class="nav-link" style="color: var(--color-ink);">← Back to Selected Works</a>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="container-editorial" style="padding-top: 5rem; padding-bottom: 8rem; max-width: 960px;">
+
+    <!-- Case Meta -->
+    <div style="margin-bottom: 3rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">
+        CASE 02 / ANALYTICS ENGINEERING & STATISTICS
+      </div>
+      <h1 class="font-serif" style="font-size: clamp(2.75rem, 6vw, 5.5rem); line-height: 0.98; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 1.5rem;">
+        Revenue Risk Analysis
+      </h1>
+      <p class="text-editorial-lead" style="color: var(--color-muted-light);">
+        A statistical analysis rejecting distorted arithmetic averages in favor of median-based ABC curve clustering, uncovering an existential concentration vulnerability.
+      </p>
+    </div>
+
+    <!-- Main Statistical Visual Plate -->
+    <div class="case-image-plate" style="margin-bottom: 4rem;">
+      <img src="../assets/images/projects/case-02-statistical.svg" alt="Revenue Risk Statistical Distribution Model">
+    </div>
+
+    <!-- 01. Context & The Problem -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">01 / THE CONTEXT & PROBLEM</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 1.5rem;">The Statistical Trap of Arithmetic Averages</h2>
+      <p class="font-sans" style="font-size: 1rem; line-height: 1.7; color: var(--color-charcoal); margin-bottom: 1.5rem;">
+        In growing companies, executive reporting commonly relies on arithmetic means (`AVG(revenue_per_client)`). When customer portfolios exhibit heavy positive skewness (Pareto distributions), an arithmetic mean is severely distorted by a handful of large contracts.
+      </p>
+      <p class="font-sans" style="font-size: 1rem; line-height: 1.7; color: var(--color-charcoal);">
+        The board believed the customer base was distributed around a healthy mid-tier ticket of R$ 18,900. In reality, hundreds of small clients were subsidizing operational churn while an ultra-thin tier of 5 accounts held the entire cash flow solvency of the business.
+      </p>
+    </section>
+
+    <!-- 02. Methodology & Rigor -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">02 / METHODOLOGY</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 1.5rem;">Non-Parametric Order Statistics</h2>
+      
+      <div class="grid-12" style="gap: 2.5rem; margin-bottom: 2rem;">
+        <div class="col-span-6">
+          <h3 class="font-sans" style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">Median-Based Segmentation</h3>
+          <p class="font-sans" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.6;">
+            By utilizing the median (`PERCENTILE_CONT(0.50)`), the true central tendency was established at R$ 4,200 — exposing that 80% of accounts were transacting at less than a quarter of the reported "average".
+          </p>
+        </div>
+        <div class="col-span-6">
+          <h3 class="font-sans" style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">Cumulative Concentration Curves</h3>
+          <p class="font-sans" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.6;">
+            Accounts were dynamically ranked and evaluated on running total shares, establishing three discrete risk tiers: Tier A (Critical 70%), Tier B (Core 20%), and Tier C (Long tail 10%).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. SQL Modeling Implementation -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">03 / SQL IMPLEMENTATION</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 1.5rem;">Dimensional Query with Window Functions</h2>
+
+      <div style="background-color: var(--color-ink); color: var(--color-warm-white); border: 1px solid var(--color-line-dark); padding: 2rem; border-radius: 4px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6;">
+<pre><code>WITH client_aggregates AS (
+    SELECT 
+        c.client_id,
+        c.company_name,
+        SUM(t.net_amount) AS total_revenue,
+        COUNT(DISTINCT t.invoice_id) AS total_invoices,
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY t.net_amount) AS median_invoice_amount
+    FROM dim_clients c
+    JOIN fact_invoices t ON c.client_id = t.client_id
+    WHERE t.status = 'PAID'
+      AND t.paid_at >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY c.client_id, c.company_name
+),
+cumulative_revenue AS (
+    SELECT 
+        client_id,
+        company_name,
+        total_revenue,
+        median_invoice_amount,
+        SUM(total_revenue) OVER (ORDER BY total_revenue DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total,
+        SUM(total_revenue) OVER () AS total_company_revenue
+    FROM client_aggregates
+)
+SELECT 
+    client_id,
+    company_name,
+    total_revenue,
+    median_invoice_amount,
+    ROUND((total_revenue / total_company_revenue) * 100, 2) AS revenue_share_pct,
+    ROUND((running_total / total_company_revenue) * 100, 2) AS cumulative_share_pct,
+    CASE 
+        WHEN (running_total / total_company_revenue) <= 0.70 THEN 'Tier A (Critical Concentration)'
+        WHEN (running_total / total_company_revenue) <= 0.90 THEN 'Tier B (Core Base)'
+        ELSE 'Tier C (Long Tail)'
+    END AS abc_tier
+FROM cumulative_revenue
+ORDER BY total_revenue DESC;</code></pre>
+      </div>
+    </section>
+
+    <!-- 04. The Business Revelation & Actions -->
+    <section style="margin-bottom: 5rem; border-top: 1px solid var(--color-line); padding-top: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">04 / STRATEGIC IMPACT</div>
+      <h2 class="font-serif" style="font-size: 2.25rem; margin-bottom: 1.5rem;">Strategic Decision-Making</h2>
+      <p class="font-sans" style="font-size: 1rem; line-height: 1.7; color: var(--color-charcoal); margin-bottom: 1.5rem;">
+        The presentation of this statistical model triggered immediate governance actions by startup leadership:
+      </p>
+      <ul class="font-sans" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; list-style-type: square; padding-left: 1.5rem;">
+        <li><strong style="color: var(--color-ink);">Executive Retention Taskforce:</strong> Immediate assignment of senior account leads to the top 5 clients representing 70% of gross volume.</li>
+        <li><strong style="color: var(--color-ink);">Commercial Realignment:</strong> Redirection of outbound sales campaigns towards mid-market tiers (R$ 5,000–12,000/mo) to systematically reduce portfolio concentration risk over the subsequent 4 quarters.</li>
+      </ul>
+    </section>
+
+    <!-- Navigation Footer -->
+    <div style="border-top: 1px solid var(--color-line); padding-top: 3rem; display: flex; justify-content: space-between; align-items: baseline;">
+      <a href="operational-pipeline.html" class="editorial-btn">← Previous Case: Operational Pipeline</a>
+      <a href="../index.html#works" class="editorial-btn">Back to Overview →</a>
+    </div>
+
+  </main>
+
+  <footer style="border-top: 1px solid var(--color-line); padding: 3rem 0; background-color: var(--color-warm-white);">
+    <div class="container-editorial" style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-muted-light);">
+      <div>AELTON SM · DATA / SYSTEMS / ENGINEERING</div>
+      <div>© 2026 ALL RIGHTS RESERVED</div>
+    </div>
+  </footer>
+
+</body>
+</html>

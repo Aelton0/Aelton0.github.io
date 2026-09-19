@@ -1,0 +1,89 @@
+/* Swiss / International 12-Column Grid & Hairline Dividers */
+
+:root {
+  --max-width-container: 1440px;
+  --gutter-desktop: 2.5rem;
+  --gutter-tablet: 1.75rem;
+  --gutter-mobile: 1.25rem;
+}
+
+.container-editorial {
+  width: 100%;
+  max-width: var(--max-width-container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter-desktop);
+  padding-right: var(--gutter-desktop);
+}
+
+@media (max-width: 1024px) {
+  .container-editorial {
+    padding-left: var(--gutter-tablet);
+    padding-right: var(--gutter-tablet);
+  }
+}
+
+@media (max-width: 640px) {
+  .container-editorial {
+    padding-left: var(--gutter-mobile);
+    padding-right: var(--gutter-mobile);
+  }
+}
+
+/* 12-Column Grid System */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .grid-12 {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-12 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Hairline Editorial Borders */
+.border-line-b {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.border-line-t {
+  border-top: 1px solid var(--color-line);
+}
+
+.border-line-dark-b {
+  border-bottom: 1px solid var(--color-line-dark);
+}
+
+.border-line-dark-t {
+  border-top: 1px solid var(--color-line-dark);
+}
+
+/* Col Spans */
+.col-span-12 { grid-column: span 12 / span 12; }
+.col-span-8  { grid-column: span 8 / span 8; }
+.col-span-6  { grid-column: span 6 / span 6; }
+.col-span-4  { grid-column: span 4 / span 4; }
+.col-span-3  { grid-column: span 3 / span 3; }
+
+@media (max-width: 1024px) {
+  .col-span-8  { grid-column: span 8 / span 8; }
+  .col-span-6  { grid-column: span 8 / span 8; }
+  .col-span-4  { grid-column: span 4 / span 4; }
+  .col-span-3  { grid-column: span 4 / span 4; }
+}
+
+@media (max-width: 640px) {
+  .col-span-12, .col-span-8, .col-span-6, .col-span-4, .col-span-3 {
+    grid-column: span 4 / span 4;
+  }
+}
