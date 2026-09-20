@@ -1,170 +1,185 @@
 /**
  * Bilingual Engine (EN / PT-BR) for Aelton SM Portfolio
+ * Handles real-time translation, persistent language state, and mechanical rolling text rebuilds.
  */
 
 const translations = {
   en: {
     // Navigation
-    nav_overview: "01. Overview",
-    nav_cases: "02. Selected Works",
-    nav_stack: "03. Engineering Rigor",
-    nav_manifesto: "04. Manifesto",
-    nav_contact: "05. Contact",
+    nav_index: "Index",
+    nav_work: "Work",
+    nav_stack: "Stack",
+    nav_about: "About",
+    nav_contact: "Contact",
+    nav_cta: "Talk with Aelton",
     nav_cv: "Download CV",
-    
-    // Status Badge
-    status_badge: "Available for Mid Analytics Roles · Q4 2026",
-    
-    // Hero
-    hero_role: "Analytics Engineer",
-    hero_headline_1: "Engineering the unseen",
-    hero_headline_2: "foundations of data.",
-    hero_subheadline: "From resilient pipelines to statistical truth — turning operational chaos into business predictability.",
-    hero_cta_cases: "Explore Production Cases",
-    hero_cta_github: "Inspect Code on GitHub",
-    hero_stat_1_num: "100%",
-    hero_stat_1_label: "Production-tested pipelines",
-    hero_stat_2_num: "0%",
-    hero_stat_2_label: "Outlier distortion (Median modeled)",
-    hero_stat_3_num: "E2E",
-    hero_stat_3_label: "Ingestion to Strategic BI",
 
-    // Section Headers
-    sec_works_badge: "Level 2 · Evidence of Competence",
-    sec_works_watermark: "SELECTED WØRKS",
-    sec_works_desc: "Production systems engineered under real constraints. Built to relieve cognitive load from engineering leadership.",
-    
-    // Case 1
-    case1_badge: "Data Integration & Automation",
-    case1_title: "E2E Ingestion Pipeline with Obfuscated Execution & Automated ERP Sync",
-    case1_desc: "Architected a decoupled ingestion pipeline capturing webhooks securely, sanitizing payloads in Python, persisting to PostgreSQL, and orchestrating API synchronization to ERP with automated lead creation.",
-    case1_metric_label: "Impact:",
-    case1_metric_val: "Eliminated 100% manual entry, sub-second payload latency & zero webhook leak.",
-    case1_btn: "Read Engineering Deep Dive →",
+    // Quick Menu / Mobile Drawer
+    menu_nav_title: "Navigation",
+    menu_actions_title: "Quick Actions",
+    menu_lang_title: "Language",
+    menu_whatsapp: "Chat on WhatsApp",
+    menu_email: "Copy / Send Email",
+    menu_linkedin: "View LinkedIn Profile",
+    menu_github: "View GitHub Repositories",
+    menu_cv_btn: "Download CV (PDF)",
 
-    // Case 2
-    case2_badge: "Analytics Engineering & Statistics",
-    case2_title: "Revenue Risk Audit: Mitigating 70% Concentration Risk via Median Distribution",
-    case2_desc: "Designed an analytical model rejecting arithmetic averages in favor of median-based ABC curve clustering. Exposed existential business exposure previously masked by ticket outliers.",
-    case2_metric_label: "Impact:",
-    case2_metric_val: "Uncovered that 5 clients accounted for 70% of company revenue (16% in single account).",
-    case2_btn: "Read Engineering Deep Dive →",
+    // Hero Section
+    hero_status: "Available For Production & Projects",
+    hero_title: "We Architect. We Build.<br>We Scale Data Systems",
+    hero_desc_lead: "Engineering mission-critical analytics pipelines, scalable relational models, and resilient systems that turn complex operations into clarity.",
+    hero_desc_sub: "All-in-one technical partner for SQL, Python workers, automated ETL, and data infrastructure. Fast, resilient, no drama.",
 
-    // Stack Matrix
-    sec_stack_badge: "Level 1 · Technical Scanning",
-    sec_stack_title: "Architecture & Stack Matrix",
-    sec_stack_subtitle: "Modular tools organized by functional layer. No superficial badges; strictly what runs in production.",
-    stack_layer_1_title: "01. Ingestion & Transport",
-    stack_layer_1_desc: "Python scripts, Secure Webhook receivers, REST APIs, n8n orchestration, JSON payload sanitization.",
-    stack_layer_2_title: "02. Storage & Warehousing",
-    stack_layer_2_desc: "PostgreSQL, MySQL, relational indexing, schema constraints, Cloud Storage (S3 roadmap).",
-    stack_layer_3_title: "03. Analytics & Modeling",
-    stack_layer_3_desc: "Advanced Modular SQL, window functions, median/quantile distribution modeling, Pandas.",
-    stack_layer_4_title: "04. Consumption & Strategic BI",
-    stack_layer_4_desc: "Power BI, Looker Studio, DAX measures, KPI modeling, executive decision interfaces.",
+    // Selected Works
+    works_monumental: "SELECTED<br>WORKS",
+    case1_meta_discipline: "01 / DATA ENGINEERING",
+    case1_meta_stack: "SQL · PYTHON · MYSQL · ETL",
+    case1_title: "Operational Data Pipeline",
+    case1_lead: "Architecture for transforming operational data into a structured analytical layer. Decoupled ingestion capturing external webhooks securely, validating schemas with Python workers, and persisting idempotently in relational stores with automated sync.",
+    case1_btn: "View Case",
 
-    // Manifesto
-    sec_manifesto_badge: "Core Philosophy",
-    sec_manifesto_title: "The Deep Waters Manifesto",
-    sec_manifesto_quote: "“Managers often treat data like a bakery: you just walk in and order. They rarely see the depth of the ocean where resilient foundations are engineered.”",
-    sec_manifesto_p1: "Real value is not in churning out cosmetic dashboards that no one uses. It is in the invisible infrastructure beneath the surface — decoupled systems, audited data, and mathematical honesty.",
-    
-    // DIKW
-    dikw_wisdom_title: "Wisdom (Decisions)",
-    dikw_wisdom_desc: "Predictable, low-risk business actions driven by actionable insight.",
-    dikw_knowledge_title: "Knowledge (Context)",
-    dikw_knowledge_desc: "Statistical validation (medians vs. outliers) revealing true portfolio behavior.",
-    dikw_info_title: "Information (Structured Data)",
-    dikw_info_desc: "Sanitized, relational models stored in PostgreSQL without duplications.",
-    dikw_data_title: "Data (Raw Chaos)",
-    dikw_data_desc: "Dispersed webhooks, raw API payloads, disparate operational endpoints.",
+    case2_meta_discipline: "02 / ANALYTICS",
+    case2_meta_stack: "SQL · STATISTICS · DATA MODELING",
+    case2_title: "Revenue Risk Analysis",
+    case2_lead: "A statistical analysis designed to identify revenue concentration and customer risk. Replaced distorted arithmetic means with non-parametric median clustering and cumulative Pareto curves, exposing existential financial exposure previously masked by high-ticket outliers.",
+    case2_btn: "View Case",
 
-    // Footer
-    footer_tagline: "Engineering the unseen foundations of data.",
-    footer_copy: "© 2026 Aelton SM. Built with rigor, precision & Chiaroscuro Tech.",
-    footer_view_code: "Source Code on GitHub"
+    // Capabilities (What I Build)
+    cap_meta: "WHAT I BUILD & OPERATE",
+    cap_1_title: "Data Engineering",
+    cap_1_desc: "SQL, Python, resilient ETL pipelines, relational data modeling, schema migrations, analytical storage.",
+    cap_2_title: "Analytics",
+    cap_2_desc: "Power BI, statistical analysis, KPI definition, customer portfolio segmentation, business metrics.",
+    cap_3_title: "Systems",
+    cap_3_desc: "Linux environments, Docker containers, Git versioning, webhook receivers, REST API integrations.",
+    cap_4_title: "Infrastructure",
+    cap_4_desc: "Monitoring, self-hosted services, Proxmox virtualization, networking fundamentals, observability.",
+
+    // The Work / Dark Interlude
+    work_interlude_meta: "THE WORK",
+    work_interlude_title: "Data / Systems / Analytics / Engineering",
+    discipline_1: "Data Pipelines",
+    discipline_2: "Statistical Analytics",
+    discipline_3: "Dimensional Warehouses",
+    discipline_4: "Systems & Automation",
+    flagship_meta: "PROJECT 01 · FLAGSHIP",
+    flagship_meta_stack: "SQL / MYSQL / ETL / MODELING",
+    flagship_title: "Operational Data Warehouse",
+    flagship_lead: "The project transforms operational data into a structured analytical architecture designed for reporting and business analysis. Eliminating analytical query overhead on production transactional databases and establishing audit-proof dimensional history.",
+    flagship_btn: "Explore Project",
+
+    // About & Timeline
+    about_meta: "ABOUT AELTON",
+    about_quote: "I work at the intersection of data, systems and business.",
+    about_lead: "My focus is understanding how information moves through a company - from operational systems and messy edge integrations to structured analytical decisions. I engineer systems that prioritize resilience and clarity over superficial complexity.",
+    about_badge: "BASED IN BRAZIL · DATA / SYSTEMS / ENGINEERING / ANALYTICS",
+    timeline_meta: "TIMELINE",
+    timeline_2026_role: "DATA / SYSTEMS / DEVOPS",
+    timeline_2026_sub: "Pipelines & Infrastructure",
+    timeline_2025_role: "PRODUCT / BUSINESS ANALYTICS",
+    timeline_2025_sub: "Startup Growth & Risk Auditing",
+    timeline_2023_role: "TECHNICAL CONSULTING",
+    timeline_2023_sub: "Data Operations & BI",
+    timeline_2020_role: "ELECTRONICS / SYSTEMS",
+    timeline_2020_sub: "Hardware & Logic Foundations",
+
+    // Contact & Footer
+    contact_meta: "05 / CONTACT",
+    contact_huge: "LET'S<br>BUILD<br>SOMETHING<br>USEFUL.",
+    contact_email: "Email",
+    contact_linkedin: "LinkedIn ↗",
+    contact_github: "GitHub ↗",
+    contact_cv: "Download CV ↓",
+    footer_rights: "ALL RIGHTS RESERVED"
   },
 
   pt: {
     // Navigation
-    nav_overview: "01. Visão Geral",
-    nav_cases: "02. Projetos em Produção",
-    nav_stack: "03. Rigor de Engenharia",
-    nav_manifesto: "04. Manifesto",
-    nav_contact: "05. Contato",
-    nav_cv: "Baixar Currículo",
-    
-    // Status Badge
-    status_badge: "Disponível para Posições Plenas · Q4 2026",
-    
-    // Hero
-    hero_role: "Analytics Engineer",
-    hero_headline_1: "Projetando as fundações",
-    hero_headline_2: "invisíveis dos dados.",
-    hero_subheadline: "De pipelines resilientes à verdade estatística — transformando o caos operacional em previsibilidade de negócio.",
-    hero_cta_cases: "Explorar Cases em Produção",
-    hero_cta_github: "Inspecionar Código no GitHub",
-    hero_stat_1_num: "100%",
-    hero_stat_1_label: "Pipelines validados em produção",
-    hero_stat_2_num: "0%",
-    hero_stat_2_label: "Distorção por outliers (Baseado em mediana)",
-    hero_stat_3_num: "E2E",
-    hero_stat_3_label: "Da Ingestão ao BI Estratégico",
+    nav_index: "Início",
+    nav_work: "Projetos",
+    nav_stack: "Stack",
+    nav_about: "Sobre",
+    nav_contact: "Contato",
+    nav_cta: "Falar com Aelton",
+    nav_cv: "Baixar CV",
 
-    // Section Headers
-    sec_works_badge: "Nível 2 · Evidência de Competência",
-    sec_works_watermark: "SELECTED WØRKS",
-    sec_works_desc: "Sistemas em produção construídos sob restrições reais. Desenhados para aliviar a carga cognitiva de lideranças técnicas.",
-    
-    // Case 1
-    case1_badge: "Integração de Dados & Automação",
-    case1_title: "Pipeline de Ingestão E2E com Ofuscação de Camada e Sincronização com ERP",
-    case1_desc: "Arquitetura de pipeline desacoplada com captura segura via webhook, higienização de payload em Python, persistência em PostgreSQL e orquestração por API para ERP com criação automatizada de leads.",
-    case1_metric_label: "Impacto:",
-    case1_metric_val: "Eliminação de 100% da inserção manual, latência de submilisegundos e zero vazamento de webhook.",
-    case1_btn: "Ler Estudo de Engenharia Completo →",
+    // Quick Menu / Mobile Drawer
+    menu_nav_title: "Navegação",
+    menu_actions_title: "Ações Rápidas",
+    menu_lang_title: "Idioma",
+    menu_whatsapp: "Conversar no WhatsApp",
+    menu_email: "Copiar / Enviar E-mail",
+    menu_linkedin: "Acessar Perfil no LinkedIn",
+    menu_github: "Ver Repositórios no GitHub",
+    menu_cv_btn: "Baixar Currículo (PDF)",
 
-    // Case 2
-    case2_badge: "Analytics Engineering & Estatística",
-    case2_title: "Auditoria de Risco de Receita: Mitigação de 70% de Concentração via Curva ABC por Mediana",
-    case2_desc: "Desenvolvimento de modelo analítico que rejeita médias simples em favor de agrupamento por mediana. Revelação de vulnerabilidade existencial mascarada por outliers de ticket.",
-    case2_metric_label: "Impacto:",
-    case2_metric_val: "Descoberta de que apenas 5 clientes concentravam 70% da receita da empresa (16% em um único cliente).",
-    case2_btn: "Ler Estudo de Engenharia Completo →",
+    // Hero Section
+    hero_status: "Disponível para Projetos & Posições",
+    hero_title: "Arquitetura, Construção e<br>Escala em Sistemas de Dados",
+    hero_desc_lead: "Engenharia de pipelines analíticos de missão crítica, modelos relacionais escaláveis e sistemas resilientes que transformam operações complexas em clareza.",
+    hero_desc_sub: "Parceiro técnico para SQL, workers em Python, ETL automatizado e infraestrutura de dados. Rápido, resiliente e sem ruído.",
 
-    // Stack Matrix
-    sec_stack_badge: "Nível 1 · Varredura Técnica",
-    sec_stack_title: "Matriz de Arquitetura & Stack",
-    sec_stack_subtitle: "Ferramentas modulares organizadas por camada funcional. Sem selos superficiais; estritamente o que roda em produção.",
-    stack_layer_1_title: "01. Ingestão & Transporte",
-    stack_layer_1_desc: "Scripts Python, Webhooks seguros, APIs REST, orquestração n8n, sanitização de payloads JSON.",
-    stack_layer_2_title: "02. Armazenamento & Banco",
-    stack_layer_2_desc: "PostgreSQL, MySQL, indexação relacional, restrições de integridade, Cloud Storage (S3 no roadmap).",
-    stack_layer_3_title: "03. Analytics & Modelagem",
-    stack_layer_3_desc: "SQL Avançado Modular, window functions, modelagem de distribuição por mediana/quantis, Pandas.",
-    stack_layer_4_title: "04. Consumo & BI Estratégico",
-    stack_layer_4_desc: "Power BI, Looker Studio, medidas DAX, modelagem de KPIs, interfaces executivas de decisão.",
+    // Selected Works
+    works_monumental: "PROJETOS<br>SELECIONADOS",
+    case1_meta_discipline: "01 / ENGENHARIA DE DADOS",
+    case1_meta_stack: "SQL · PYTHON · MYSQL · ETL",
+    case1_title: "Pipeline de Ingestão E2E",
+    case1_lead: "Arquitetura para transformar dados operacionais em uma camada analítica estruturada. Ingestão desacoplada capturando webhooks com segurança, validação de schemas com workers em Python e persistência idempotente com sincronização automatizada para ERP.",
+    case1_btn: "Ver Estudo",
 
-    // Manifesto
-    sec_manifesto_badge: "Filosofia Central",
-    sec_manifesto_title: "O Manifesto das Águas Profundas",
-    sec_manifesto_quote: "“Gestores acham que dados é uma padaria: é só chegar e pedir. Eles não enxergam a profundidade do oceano onde as fundações são construídas.”",
-    sec_manifesto_p1: "O valor real não está em produzir dashboards decorativos que ninguém consulta. Está na infraestrutura invisível sob a superfície — sistemas desacoplados, dados auditados e honestidade matemática.",
-    
-    // DIKW
-    dikw_wisdom_title: "Sabedoria (Decisões)",
-    dikw_wisdom_desc: "Ações de negócio previsíveis e de baixo risco, sustentadas por clareza analítica.",
-    dikw_knowledge_title: "Conhecimento (Contexto)",
-    dikw_knowledge_desc: "Validação estatística (mediana contra outliers) revelando o comportamento real da carteira.",
-    dikw_info_title: "Informação (Dados Estruturados)",
-    dikw_info_desc: "Modelos relacionais tratados e persistidos em PostgreSQL sem duplicações.",
-    dikw_data_title: "Dado Bruto (O Caos Inicial)",
-    dikw_data_desc: "Webhooks dispersos, payloads brutos de APIs, múltiplos endpoints operacionais.",
+    case2_meta_discipline: "02 / ANALYTICS",
+    case2_meta_stack: "SQL · ESTATÍSTICA · MODELAGEM DE DADOS",
+    case2_title: "Auditoria de Risco de Receita",
+    case2_lead: "Análise estatística desenhada para identificar concentração de receita e risco de clientes. Rejeição de médias aritméticas distorcidas em favor de agrupamento por mediana e curvas acumuladas de Pareto, expondo vulnerabilidades mascaradas por outliers.",
+    case2_btn: "Ver Estudo",
 
-    // Footer
-    footer_tagline: "Projetando as fundações invisíveis dos dados.",
-    footer_copy: "© 2026 Aelton SM. Construído com rigor, precisão & Chiaroscuro Tech.",
-    footer_view_code: "Código-Fonte no GitHub"
+    // Capabilities (What I Build)
+    cap_meta: "O QUE CONSTRUO & OPERO",
+    cap_1_title: "Engenharia de Dados",
+    cap_1_desc: "SQL, Python, pipelines ETL resilientes, modelagem relacional, migrações de esquemas e armazenamento analítico.",
+    cap_2_title: "Analytics",
+    cap_2_desc: "Power BI, análise estatística, definição de KPIs, segmentação de carteira de clientes e métricas estratégicas.",
+    cap_3_title: "Sistemas",
+    cap_3_desc: "Ambientes Linux, containers Docker, versionamento Git, receptores de webhooks e integrações de APIs REST.",
+    cap_4_title: "Infraestrutura",
+    cap_4_desc: "Monitoramento, serviços self-hosted, virtualização Proxmox, fundamentos de redes e observabilidade.",
+
+    // The Work / Dark Interlude
+    work_interlude_meta: "O TRABALHO",
+    work_interlude_title: "Dados / Sistemas / Analytics / Engenharia",
+    discipline_1: "Pipelines de Dados",
+    discipline_2: "Estatística & Analytics",
+    discipline_3: "Data Warehouses",
+    discipline_4: "Sistemas & Automação",
+    flagship_meta: "PROJETO 01 · DESTAQUE",
+    flagship_meta_stack: "SQL / MYSQL / ETL / MODELAGEM",
+    flagship_title: "Data Warehouse Operacional",
+    flagship_lead: "Transformação de dados operacionais brutos em uma arquitetura analítica estruturada para relatórios executivos. Elimina sobrecarga analítica nas bases transacionais e estabelece histórico dimensional auditável.",
+    flagship_btn: "Explorar Projeto",
+
+    // About & Timeline
+    about_meta: "SOBRE AELTON",
+    about_quote: "Trabalho na interseção entre dados, sistemas e estratégia de negócio.",
+    about_lead: "Meu foco é compreender como a informação trafega na empresa - desde sistemas operacionais e integrações instáveis na ponta até decisões analíticas estruturadas. Construo sistemas que priorizam resiliência e clareza em vez de complexidade superficial.",
+    about_badge: "BASEADO NO BRASIL · DADOS / SISTEMAS / ENGENHARIA / ANALYTICS",
+    timeline_meta: "TRAJETÓRIA",
+    timeline_2026_role: "DADOS / SISTEMAS / DEVOPS",
+    timeline_2026_sub: "Pipelines & Infraestrutura",
+    timeline_2025_role: "PRODUTO / BUSINESS ANALYTICS",
+    timeline_2025_sub: "Crescimento de Startups & Auditoria de Risco",
+    timeline_2023_role: "CONSULTORIA TÉCNICA",
+    timeline_2023_sub: "Operações de Dados & BI",
+    timeline_2020_role: "ELETRÔNICA / SISTEMAS",
+    timeline_2020_sub: "Fundamentos de Hardware e Lógica",
+
+    // Contact & Footer
+    contact_meta: "05 / CONTATO",
+    contact_huge: "VAMOS<br>CONSTRUIR<br>ALGO<br>ÚTIL.",
+    contact_email: "Email",
+    contact_linkedin: "LinkedIn ↗",
+    contact_github: "GitHub ↗",
+    contact_cv: "Baixar Currículo ↓",
+    footer_rights: "TODOS OS DIREITOS RESERVADOS"
   }
 };
 
@@ -175,27 +190,46 @@ function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('aelton_lang', lang);
 
+  // 1. Update text and html content
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (translations[lang][key]) {
-      el.textContent = translations[lang][key];
+    const translatedText = translations[lang][key];
+    if (translatedText !== undefined) {
+      if (el.classList.contains('rolling-text')) {
+        el.setAttribute('data-rolling', translatedText);
+        el.textContent = translatedText;
+      } else if (translatedText.includes('<br>') || translatedText.includes('<span') || translatedText.includes('&nbsp;')) {
+        el.innerHTML = translatedText;
+      } else {
+        el.textContent = translatedText;
+      }
     }
   });
 
-  // Update active state in buttons
+  // 2. Re-trigger rolling text generator to rebuild internal character wrappers in the new language
+  if (typeof window.initRollingText === 'function') {
+    window.initRollingText();
+  }
+
+  // 3. Update active state in all language buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
 
+  // 4. Update html lang attribute
   document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
 }
+
+// Expose globally
+window.setLanguage = setLanguage;
 
 document.addEventListener('DOMContentLoaded', () => {
   setLanguage(currentLang);
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const lang = e.target.getAttribute('data-lang');
+      e.stopPropagation();
+      const lang = btn.getAttribute('data-lang');
       setLanguage(lang);
     });
   });

@@ -1,12 +1,12 @@
 /**
  * Aelton SM — Editorial Technical Portfolio
- * Immersive Componine Hero System, Preloader, and Mechanical Rolling Text
+ * Immersive Componine Hero System, Preloader, Mechanical Rolling Text & Quick Actions
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // ========================================================================
-  // 1. MECHANICAL ROLLING TEXT GENERATOR
-  // ========================================================================
+// ========================================================================
+// 1. MECHANICAL ROLLING TEXT GENERATOR (EXPOSED GLOBALLY)
+// ========================================================================
+function initRollingText() {
   const rollingTextElements = document.querySelectorAll('.rolling-text');
 
   rollingTextElements.forEach(el => {
@@ -49,6 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+}
+
+window.initRollingText = initRollingText;
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize rolling text
+  initRollingText();
 
   // ========================================================================
   // 2. KINETIC PRELOADER (WORDS CYCLING & 16-PANEL CURTAIN RETRACT)
@@ -189,23 +196,68 @@ document.addEventListener('DOMContentLoaded', () => {
     '04': 'assets/images/hero/hero-architectural.svg'
   };
 
+  function activateDiscipline(item) {
+    const num = item.getAttribute('data-num');
+    if (previews[num] && previewImage) {
+      previewImage.style.opacity = '0.4';
+      setTimeout(() => {
+        previewImage.src = previews[num];
+        previewImage.style.opacity = '1';
+      }, 150);
+    }
+    disciplineItems.forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  }
+
   disciplineItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      const num = item.getAttribute('data-num');
-      if (previews[num] && previewImage) {
-        previewImage.style.opacity = '0.4';
-        setTimeout(() => {
-          previewImage.src = previews[num];
-          previewImage.style.opacity = '1';
-        }, 150);
-      }
-      disciplineItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-    });
+    item.addEventListener('mouseenter', () => activateDiscipline(item));
+    item.addEventListener('click', () => activateDiscipline(item));
   });
 
   // ========================================================================
-  // 6. DYNAMIC YEAR IN FOOTER
+  // 6. QUICK ACTIONS MENU & MOBILE DRAWER TOGGLE
+  // ========================================================================
+  const menuToggle = document.querySelector('.header-toggle-circle');
+  const quickMenu = document.getElementById('quick-menu');
+
+  if (menuToggle && quickMenu) {
+    function toggleMenu(open) {
+      const isExpanded = open !== undefined ? open : !quickMenu.classList.contains('is-open');
+      quickMenu.classList.toggle('is-open', isExpanded);
+      menuToggle.classList.toggle('active', isExpanded);
+      menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      quickMenu.setAttribute('aria-hidden', isExpanded ? 'false' : 'true');
+    }
+
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close when clicking on any link inside quick menu
+    quickMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggleMenu(false);
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (quickMenu.classList.contains('is-open') && !quickMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && quickMenu.classList.contains('is-open')) {
+        toggleMenu(false);
+      }
+    });
+  }
+
+  // ========================================================================
+  // 7. DYNAMIC YEAR IN FOOTER
   // ========================================================================
   const yearEl = document.getElementById('year');
   if (yearEl) {

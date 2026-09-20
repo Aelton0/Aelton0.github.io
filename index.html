@@ -66,29 +66,36 @@
         <div class="nav-links-track">
           <a href="#hero" class="nav-item-link" aria-label="Index">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            <span class="rolling-text" data-rolling="Index">Index</span>
+            <span class="rolling-text" data-rolling="Index" data-i18n="nav_index">Index</span>
           </a>
           <a href="#works" class="nav-item-link" aria-label="Work">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span class="rolling-text" data-rolling="Work">Work</span>
+            <span class="rolling-text" data-rolling="Work" data-i18n="nav_work">Work</span>
           </a>
           <a href="#capabilities" class="nav-item-link" aria-label="Stack">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            <span class="rolling-text" data-rolling="Stack">Stack</span>
+            <span class="rolling-text" data-rolling="Stack" data-i18n="nav_stack">Stack</span>
           </a>
           <a href="#about" class="nav-item-link" aria-label="About">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span class="rolling-text" data-rolling="About">About</span>
+            <span class="rolling-text" data-rolling="About" data-i18n="nav_about">About</span>
           </a>
           <a href="#contact" class="nav-item-link" aria-label="Contact">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <span class="rolling-text" data-rolling="Contact">Contact</span>
+            <span class="rolling-text" data-rolling="Contact" data-i18n="nav_contact">Contact</span>
           </a>
         </div>
       </div>
 
-      <!-- Right Pill: CTA Button with Moving Halftone Glow -->
+      <!-- Right Pill: Language Switcher + CTA Button + Quick Menu Trigger -->
       <div class="nav-cta-wrapper">
+        <!-- Language Switcher Pill -->
+        <div class="shadow-button nav-lang-switcher" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-divider">/</span>
+          <button type="button" class="lang-btn" data-lang="pt" aria-label="Português">PT</button>
+        </div>
+
         <a href="#contact" class="shadow-button cta-pill-button">
           <div class="button-circles-wrapper">
             <div class="moving-circle moving-circle-left"></div>
@@ -100,10 +107,10 @@
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
-          <span class="rolling-text" data-rolling="Talk with Aelton">Talk with Aelton</span>
+          <span class="rolling-text" data-rolling="Talk with Aelton" data-i18n="nav_cta">Talk with Aelton</span>
         </a>
 
-        <div class="shadow-button header-toggle-circle" role="button" aria-label="Menu" tabindex="0">
+        <div class="shadow-button header-toggle-circle" role="button" aria-label="Quick Actions Menu" aria-expanded="false" tabindex="0">
           <div class="toggle-dots">
             <div class="toggle-dot"></div>
             <div class="toggle-dot"></div>
@@ -112,6 +119,63 @@
         </div>
       </div>
     </nav>
+
+    <!-- Quick Actions & Mobile Menu Dropdown -->
+    <div class="header-quick-menu" id="quick-menu" aria-hidden="true">
+      <div class="quick-menu-header">
+        <span class="quick-menu-title" data-i18n="menu_nav_title">Navigation</span>
+      </div>
+
+      <div class="quick-menu-nav-links">
+        <a href="#hero" class="quick-menu-nav-item">
+          <span data-i18n="nav_index">Index</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="#works" class="quick-menu-nav-item">
+          <span data-i18n="nav_work">Work</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="#capabilities" class="quick-menu-nav-item">
+          <span data-i18n="nav_stack">Stack</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="#about" class="quick-menu-nav-item">
+          <span data-i18n="nav_about">About</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="#contact" class="quick-menu-nav-item">
+          <span data-i18n="nav_contact">Contact</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+
+      <div class="quick-menu-header">
+        <span class="quick-menu-title" data-i18n="menu_actions_title">Quick Actions</span>
+      </div>
+
+      <div class="quick-menu-actions">
+        <a href="assets/docs/aelton-sm-resume.pdf" class="quick-action-link quick-action-cv" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span data-i18n="menu_cv_btn">Download CV (PDF)</span>
+        </a>
+        <a href="https://wa.me/5554991934260?text=Ol%C3%A1%2C%20Aelton!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" class="quick-action-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          <span data-i18n="menu_whatsapp">Chat on WhatsApp</span>
+        </a>
+        <a href="mailto:aeltonsoaresdemenezes@gmail.com" class="quick-action-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span data-i18n="menu_email">Copy / Send Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/aelton-soares-de-menezes/" target="_blank" rel="noopener noreferrer" class="quick-action-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <span data-i18n="menu_linkedin">View LinkedIn Profile</span>
+        </a>
+        <a href="https://github.com/Aelton0" target="_blank" rel="noopener noreferrer" class="quick-action-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <span data-i18n="menu_github">View GitHub Repositories</span>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- 02. CINEMATIC HERO SECTION (COMPONINE PATTERN) -->
@@ -171,11 +235,11 @@
             <div class="ai-core"></div>
             <div class="ai-ring"></div>
           </div>
-          <span class="hero-status-text">Available For Production &amp; Projects</span>
+          <span class="hero-status-text" data-i18n="hero_status">Available For Production &amp; Projects</span>
         </div>
 
         <!-- Monumental Two-Line Headline -->
-        <h1 class="hero-monumental-title">
+        <h1 class="hero-monumental-title" data-i18n="hero_title">
           We Architect. We Build.<br>
           We Scale Data Systems
         </h1>
@@ -183,10 +247,10 @@
 
       <!-- Right Editorial Column -->
       <div class="hero-desc-column">
-        <p class="hero-desc-lead">
+        <p class="hero-desc-lead" data-i18n="hero_desc_lead">
           Engineering mission-critical analytics pipelines, scalable relational models, and resilient systems that turn complex operations into clarity.
         </p>
-        <p class="hero-desc-sub">
+        <p class="hero-desc-sub" data-i18n="hero_desc_sub">
           All-in-one technical partner for SQL, Python workers, automated ETL, and data infrastructure. Fast, resilient, no drama.
         </p>
       </div>
@@ -247,17 +311,17 @@
 
       <!-- Monumental Section Heading -->
       <div class="selected-works-heading">
-        <h2 class="display-monumental">SELECTED<br>WORKS</h2>
+        <h2 class="display-monumental" data-i18n="works_monumental">SELECTED<br>WORKS</h2>
       </div>
 
       <!-- PROJECT 01: OPERATIONAL DATA PIPELINE -->
       <article class="editorial-case">
         <div class="case-meta-header">
-          <span class="text-meta" style="color: var(--color-signal);">01 / DATA ENGINEERING</span>
-          <span class="text-meta" style="color: var(--color-muted-light);">SQL · PYTHON · MYSQL · ETL</span>
+          <span class="text-meta" style="color: var(--color-signal);" data-i18n="case1_meta_discipline">01 / DATA ENGINEERING</span>
+          <span class="text-meta" style="color: var(--color-muted-light);" data-i18n="case1_meta_stack">SQL · PYTHON · MYSQL · ETL</span>
         </div>
 
-        <h3 class="display-case-title" style="margin-bottom: 2rem;">
+        <h3 class="display-case-title" style="margin-bottom: 2rem;" data-i18n="case1_title">
           Operational Data Pipeline
         </h3>
 
@@ -268,14 +332,14 @@
 
         <div class="grid-12" style="align-items: baseline;">
           <div class="col-span-8">
-            <p class="text-editorial-lead" style="color: var(--color-charcoal);">
+            <p class="text-editorial-lead" style="color: var(--color-charcoal);" data-i18n="case1_lead">
               Architecture for transforming operational data into a structured analytical layer.
               Decoupled ingestion capturing external webhooks securely, validating schemas with Python workers, and persisting idempotently in relational stores with automated sync.
             </p>
           </div>
           <div class="col-span-4" style="text-align: right;">
             <a href="work/operational-pipeline.html" class="editorial-btn">
-              <span>View Case</span>
+              <span data-i18n="case1_btn">View Case</span>
               <span>→</span>
             </a>
           </div>
@@ -288,11 +352,11 @@
       <!-- PROJECT 02: REVENUE RISK ANALYSIS -->
       <article class="editorial-case">
         <div class="case-meta-header">
-          <span class="text-meta" style="color: var(--color-signal);">02 / ANALYTICS</span>
-          <span class="text-meta" style="color: var(--color-muted-light);">SQL · STATISTICS · DATA MODELING</span>
+          <span class="text-meta" style="color: var(--color-signal);" data-i18n="case2_meta_discipline">02 / ANALYTICS</span>
+          <span class="text-meta" style="color: var(--color-muted-light);" data-i18n="case2_meta_stack">SQL · STATISTICS · DATA MODELING</span>
         </div>
 
-        <h3 class="display-case-title" style="margin-bottom: 2rem;">
+        <h3 class="display-case-title" style="margin-bottom: 2rem;" data-i18n="case2_title">
           Revenue Risk Analysis
         </h3>
 
@@ -303,14 +367,14 @@
 
         <div class="grid-12" style="align-items: baseline;">
           <div class="col-span-8">
-            <p class="text-editorial-lead" style="color: var(--color-charcoal);">
+            <p class="text-editorial-lead" style="color: var(--color-charcoal);" data-i18n="case2_lead">
               A statistical analysis designed to identify revenue concentration and customer risk.
               Replaced distorted arithmetic means with non-parametric median clustering and cumulative Pareto curves, exposing existential financial exposure previously masked by high-ticket outliers.
             </p>
           </div>
           <div class="col-span-4" style="text-align: right;">
             <a href="work/revenue-analysis.html" class="editorial-btn">
-              <span>View Case</span>
+              <span data-i18n="case2_btn">View Case</span>
               <span>→</span>
             </a>
           </div>
@@ -323,16 +387,16 @@
   <!-- 04. WHAT I BUILD / CAPABILITIES (HUMAN EDITORIAL COMPOSITION) -->
   <section id="capabilities" class="theme-paper capabilities-section">
     <div class="container-editorial">
-      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 3rem;">
-        WHAT I BUILD & OPERATE
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 3rem;" data-i18n="cap_meta">
+        WHAT I BUILD &amp; OPERATE
       </div>
 
       <div class="grid-12">
         <!-- 01 Data Engineering -->
         <div class="col-span-3 capability-item">
           <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">01</div>
-          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Data Engineering</h4>
-          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;" data-i18n="cap_1_title">Data Engineering</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;" data-i18n="cap_1_desc">
             SQL, Python, resilient ETL pipelines, relational data modeling, schema migrations, analytical storage.
           </p>
         </div>
@@ -340,8 +404,8 @@
         <!-- 02 Analytics -->
         <div class="col-span-3 capability-item">
           <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">02</div>
-          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Analytics</h4>
-          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;" data-i18n="cap_2_title">Analytics</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;" data-i18n="cap_2_desc">
             Power BI, statistical analysis, KPI definition, customer portfolio segmentation, business metrics.
           </p>
         </div>
@@ -349,8 +413,8 @@
         <!-- 03 Systems -->
         <div class="col-span-3 capability-item">
           <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">03</div>
-          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Systems</h4>
-          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;" data-i18n="cap_3_title">Systems</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;" data-i18n="cap_3_desc">
             Linux environments, Docker containers, Git versioning, webhook receivers, REST API integrations.
           </p>
         </div>
@@ -358,8 +422,8 @@
         <!-- 04 Infrastructure -->
         <div class="col-span-3 capability-item">
           <div class="text-meta" style="color: var(--color-muted-light); margin-bottom: 1rem;">04</div>
-          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;">Infrastructure</h4>
-          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;">
+          <h4 class="font-serif" style="font-size: 1.75rem; line-height: 1.1; margin-bottom: 1.25rem;" data-i18n="cap_4_title">Infrastructure</h4>
+          <p class="font-sans" style="font-size: 0.85rem; color: var(--color-muted-light); line-height: 1.6;" data-i18n="cap_4_desc">
             Monitoring, self-hosted services, Proxmox virtualization, networking fundamentals, observability.
           </p>
         </div>
@@ -373,8 +437,8 @@
 
       <!-- Header Interlude -->
       <div style="padding-bottom: 3rem; border-bottom: 1px solid var(--color-line-dark); margin-bottom: 5rem;">
-        <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;">THE WORK</div>
-        <div class="font-serif" style="font-size: clamp(2rem, 4vw, 4rem); text-transform: uppercase; line-height: 1;">
+        <div class="text-meta" style="color: var(--color-signal); margin-bottom: 1rem;" data-i18n="work_interlude_meta">THE WORK</div>
+        <div class="font-serif" style="font-size: clamp(2rem, 4vw, 4rem); text-transform: uppercase; line-height: 1;" data-i18n="work_interlude_title">
           Data / Systems / Analytics / Engineering
         </div>
       </div>
@@ -390,19 +454,19 @@
         <div class="col-span-7" style="padding-left: 2rem;">
           <div class="discipline-nav-list">
             <div class="discipline-item active" data-num="01">
-              <span class="discipline-item-title">Data Pipelines</span>
+              <span class="discipline-item-title" data-i18n="discipline_1">Data Pipelines</span>
               <span class="discipline-item-num">01</span>
             </div>
             <div class="discipline-item" data-num="02">
-              <span class="discipline-item-title">Statistical Analytics</span>
+              <span class="discipline-item-title" data-i18n="discipline_2">Statistical Analytics</span>
               <span class="discipline-item-num">02</span>
             </div>
             <div class="discipline-item" data-num="03">
-              <span class="discipline-item-title">Dimensional Warehouses</span>
+              <span class="discipline-item-title" data-i18n="discipline_3">Dimensional Warehouses</span>
               <span class="discipline-item-num">03</span>
             </div>
             <div class="discipline-item" data-num="04">
-              <span class="discipline-item-title">Systems &amp; Automation</span>
+              <span class="discipline-item-title" data-i18n="discipline_4">Systems &amp; Automation</span>
               <span class="discipline-item-num">04</span>
             </div>
           </div>
@@ -415,11 +479,11 @@
       <!-- Flagship Feature -->
       <article>
         <div class="case-meta-header">
-          <span class="text-meta" style="color: var(--color-signal);">PROJECT 01 · FLAGSHIP</span>
-          <span class="text-meta" style="color: var(--color-muted);">SQL / MYSQL / ETL / MODELING</span>
+          <span class="text-meta" style="color: var(--color-signal);" data-i18n="flagship_meta">PROJECT 01 · FLAGSHIP</span>
+          <span class="text-meta" style="color: var(--color-muted);" data-i18n="flagship_meta_stack">SQL / MYSQL / ETL / MODELING</span>
         </div>
 
-        <h3 class="display-case-title" style="margin-bottom: 2rem;">
+        <h3 class="display-case-title" style="margin-bottom: 2rem;" data-i18n="flagship_title">
           Operational Data Warehouse
         </h3>
 
@@ -430,14 +494,14 @@
 
         <div class="grid-12" style="align-items: baseline;">
           <div class="col-span-8">
-            <p class="text-editorial-lead" style="color: var(--color-muted);">
+            <p class="text-editorial-lead" style="color: var(--color-muted);" data-i18n="flagship_lead">
               The project transforms operational data into a structured analytical architecture designed for reporting and business analysis.
               Eliminating analytical query overhead on production transactional databases and establishing audit-proof dimensional history.
             </p>
           </div>
           <div class="col-span-4" style="text-align: right;">
             <a href="work/operational-pipeline.html" class="editorial-btn">
-              <span>Explore Project</span>
+              <span data-i18n="flagship_btn">Explore Project</span>
               <span>→</span>
             </a>
           </div>
@@ -454,58 +518,58 @@
 
         <!-- Narrative Column -->
         <div class="col-span-7">
-          <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2rem;">
+          <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2rem;" data-i18n="about_meta">
             ABOUT AELTON
           </div>
 
-          <p class="font-serif" style="font-size: clamp(1.75rem, 3vw, 3rem); line-height: 1.25; margin-bottom: 2.5rem; color: var(--color-ink);">
+          <p class="font-serif" style="font-size: clamp(1.75rem, 3vw, 3rem); line-height: 1.25; margin-bottom: 2.5rem; color: var(--color-ink);" data-i18n="about_quote">
             I work at the intersection of data, systems and business.
           </p>
 
-          <p class="font-sans" style="font-size: 1rem; color: var(--color-charcoal); line-height: 1.7; max-width: 580px; margin-bottom: 2.5rem;">
+          <p class="font-sans" style="font-size: 1rem; color: var(--color-charcoal); line-height: 1.7; max-width: 580px; margin-bottom: 2.5rem;" data-i18n="about_lead">
             My focus is understanding how information moves through a company - from operational systems and messy edge integrations to structured analytical decisions. I engineer systems that prioritize resilience and clarity over superficial complexity.
           </p>
 
-          <div class="text-meta" style="color: var(--color-muted-light);">
+          <div class="text-meta" style="color: var(--color-muted-light);" data-i18n="about_badge">
             BASED IN BRAZIL &nbsp;·&nbsp; DATA / SYSTEMS / ENGINEERING / ANALYTICS
           </div>
         </div>
 
         <!-- Minimalist Timeline Column -->
         <div class="col-span-5" style="border-left: 1px solid var(--color-line); padding-left: 3rem;">
-          <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2rem;">
+          <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2rem;" data-i18n="timeline_meta">
             TIMELINE
           </div>
 
           <div class="timeline-entry">
             <div class="timeline-year">2026</div>
             <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
-              DATA / SYSTEMS / DEVOPS
-              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Pipelines & Infrastructure</div>
+              <span data-i18n="timeline_2026_role">DATA / SYSTEMS / DEVOPS</span>
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;" data-i18n="timeline_2026_sub">Pipelines &amp; Infrastructure</div>
             </div>
           </div>
 
           <div class="timeline-entry">
             <div class="timeline-year">2025</div>
             <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
-              PRODUCT / BUSINESS ANALYTICS
-              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Startup Growth & Risk Auditing</div>
+              <span data-i18n="timeline_2025_role">PRODUCT / BUSINESS ANALYTICS</span>
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;" data-i18n="timeline_2025_sub">Startup Growth &amp; Risk Auditing</div>
             </div>
           </div>
 
           <div class="timeline-entry">
             <div class="timeline-year">2023</div>
             <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
-              TECHNICAL CONSULTING
-              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Data Operations & BI</div>
+              <span data-i18n="timeline_2023_role">TECHNICAL CONSULTING</span>
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;" data-i18n="timeline_2023_sub">Data Operations &amp; BI</div>
             </div>
           </div>
 
           <div class="timeline-entry">
             <div class="timeline-year">2020</div>
             <div class="font-sans" style="font-size: 0.85rem; color: var(--color-ink); font-weight: 500;">
-              ELECTRONICS / SYSTEMS
-              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;">Hardware & Logic Foundations</div>
+              <span data-i18n="timeline_2020_role">ELECTRONICS / SYSTEMS</span>
+              <div class="text-meta" style="color: var(--color-muted-light); margin-top: 4px;" data-i18n="timeline_2020_sub">Hardware &amp; Logic Foundations</div>
             </div>
           </div>
         </div>
@@ -517,11 +581,11 @@
   <!-- 07. CLOSING / CONTACT (DARK EDITORIAL CLOSING) -->
   <footer id="contact" class="closing-section">
     <div class="container-editorial">
-      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2.5rem;">
+      <div class="text-meta" style="color: var(--color-signal); margin-bottom: 2.5rem;" data-i18n="contact_meta">
         05 / CONTACT
       </div>
 
-      <div class="closing-huge-type">
+      <div class="closing-huge-type" data-i18n="contact_huge">
         LET'S<br>
         BUILD<br>
         SOMETHING<br>
@@ -529,20 +593,21 @@
       </div>
 
       <div class="contact-links-strip">
-        <a href="mailto:aelton.sm@dev.br" class="contact-link">Email</a>
-        <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn ↗</a>
-        <a href="https://github.com/Aelton0" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub ↗</a>
-        <a href="assets/docs/aelton-sm-resume.pdf" class="contact-link" download>Download CV ↓</a>
+        <a href="mailto:aeltonsoaresdemenezes@gmail.com" class="contact-link" data-i18n="contact_email">Email</a>
+        <a href="https://www.linkedin.com/in/aelton-soares-de-menezes/" target="_blank" rel="noopener noreferrer" class="contact-link" data-i18n="contact_linkedin">LinkedIn ↗</a>
+        <a href="https://github.com/Aelton0" target="_blank" rel="noopener noreferrer" class="contact-link" data-i18n="contact_github">GitHub ↗</a>
+        <a href="assets/docs/aelton-sm-resume.pdf" class="contact-link" download data-i18n="contact_cv">Download CV ↓</a>
       </div>
 
       <div class="footer-mini">
         <div>AELTON SM &nbsp;·&nbsp; DATA / SYSTEMS / ENGINEERING</div>
-        <div>© <span id="year">2026</span> ALL RIGHTS RESERVED</div>
+        <div>© <span id="year">2026</span> <span data-i18n="footer_rights">ALL RIGHTS RESERVED</span></div>
       </div>
     </div>
   </footer>
 
   <!-- Clean Essential JavaScript -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/i18n.js"></script>
 </body>
 </html>
