@@ -1085,3 +1085,321 @@
     padding: 16px 0 20px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   7. GOOGLE MEET & SCHEDULING MODAL
+   -------------------------------------------------------------------------- */
+.meet-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+}
+
+.meet-modal.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.meet-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 3, 2, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+}
+
+.meet-modal-dialog {
+  position: relative;
+  z-index: 2;
+  width: 540px;
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(18, 14, 11, 0.94);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  padding: 36px 32px 32px;
+  box-shadow: 
+    0 32px 80px -16px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  transform: translateY(16px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.meet-modal.is-active .meet-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.meet-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #EDEDED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.meet-modal-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+  transform: scale(1.08);
+}
+
+.meet-modal-header {
+  margin-bottom: 24px;
+}
+
+.meet-modal-badge {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-signal, #e0a96d);
+  background: rgba(224, 169, 109, 0.12);
+  border: 1px solid rgba(224, 169, 109, 0.3);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.meet-modal-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.meet-modal-subtitle {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-muted, #918F87);
+}
+
+/* Primary Action Card: Google Calendar & Meet */
+.meet-card-primary {
+  display: block;
+  text-decoration: none;
+  background: linear-gradient(135deg, rgba(224, 169, 109, 0.15) 0%, rgba(30, 24, 19, 0.8) 100%);
+  border: 1px solid rgba(224, 169, 109, 0.38);
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 20px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.meet-card-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(224, 169, 109, 0.6), transparent);
+}
+
+.meet-card-primary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(224, 169, 109, 0.7);
+  box-shadow: 
+    0 16px 36px -10px rgba(224, 169, 109, 0.2),
+    0 0 20px rgba(224, 169, 109, 0.15);
+}
+
+.meet-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--color-signal, #e0a96d);
+  margin-bottom: 10px;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #34D399;
+  box-shadow: 0 0 8px #34D399;
+  animation: pulse-ai 2s infinite ease-in-out;
+}
+
+.meet-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.meet-google-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--color-signal, #e0a96d);
+  flex-shrink: 0;
+}
+
+.meet-card-info h3 {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.meet-card-info p {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 16px;
+}
+
+.meet-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--color-signal, #e0a96d);
+  color: #120e0b;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(224, 169, 109, 0.3);
+}
+
+.meet-card-primary:hover .meet-btn-primary {
+  background: #FFFFFF;
+  color: #000000;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+
+/* Secondary Channels Grid */
+.meet-secondary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.meet-card-secondary {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.meet-card-secondary:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.meet-secondary-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.wa-icon {
+  background: rgba(37, 211, 102, 0.15);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.25);
+}
+
+.email-icon {
+  background: rgba(167, 139, 250, 0.15);
+  color: #A78BFA;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+}
+
+.meet-secondary-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.meet-secondary-info h4 {
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.meet-secondary-info p {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--color-muted, #918F87);
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.meet-secondary-action {
+  margin-top: auto;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-signal, #e0a96d);
+  transition: color 0.2s ease;
+}
+
+.meet-card-secondary:hover .meet-secondary-action {
+  color: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+  .meet-modal-dialog {
+    padding: 24px 18px 20px;
+    border-radius: 20px;
+  }
+
+  .meet-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .meet-secondary-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -257,7 +257,54 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================================
-  // 7. DYNAMIC YEAR IN FOOTER
+  // 7. GOOGLE MEET & CALENDAR SCHEDULING MODAL
+  // ========================================================================
+  const GOOGLE_MEET_BOOKING_URL = 'https://calendar.app.google/bRT38gjsBrpj8iDg7';
+  const meetModal = document.getElementById('meet-modal');
+  const meetModalClose = document.getElementById('meet-modal-close');
+  const meetModalBackdrop = document.querySelector('.meet-modal-backdrop');
+  const ctaButtons = document.querySelectorAll('.cta-pill-button, [data-action="open-meet-modal"]');
+
+  function openMeetModal() {
+    if (!meetModal) return;
+    meetModal.classList.add('is-active');
+    meetModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMeetModal() {
+    if (!meetModal) return;
+    meetModal.classList.remove('is-active');
+    meetModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  window.openMeetModal = openMeetModal;
+  window.closeMeetModal = closeMeetModal;
+
+  ctaButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openMeetModal();
+    });
+  });
+
+  if (meetModalClose) {
+    meetModalClose.addEventListener('click', closeMeetModal);
+  }
+
+  if (meetModalBackdrop) {
+    meetModalBackdrop.addEventListener('click', closeMeetModal);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && meetModal && meetModal.classList.contains('is-active')) {
+      closeMeetModal();
+    }
+  });
+
+  // ========================================================================
+  // 8. DYNAMIC YEAR IN FOOTER
   // ========================================================================
   const yearEl = document.getElementById('year');
   if (yearEl) {

@@ -90,7 +90,23 @@ const translations = {
     contact_linkedin: "LinkedIn ↗",
     contact_github: "GitHub ↗",
     contact_cv: "Download CV ↓",
-    footer_rights: "ALL RIGHTS RESERVED"
+    footer_rights: "ALL RIGHTS RESERVED",
+
+    // Meet / Schedule Modal
+    modal_badge: "GOOGLE MEET · CALENDAR SYNC",
+    modal_meet_title: "Schedule a Session with Aelton",
+    modal_meet_subtitle: "Choose an open slot directly on Google Calendar with automated Google Meet video room creation, or send a direct message.",
+    modal_gmeet_tag: "OFFICIAL CALENDAR",
+    modal_gmeet_title: "Google Meet Video Call",
+    modal_gmeet_desc: "Select a convenient time on my calendar. Generates an instant Google Meet link and calendar invite.",
+    modal_gmeet_btn: "Open Google Calendar ↗",
+    modal_wa_title: "Direct WhatsApp",
+    modal_wa_desc: "Direct messaging for agile communication and urgent inquiries.",
+    modal_wa_btn: "Open WhatsApp ↗",
+    modal_email_title: "Professional Email",
+    modal_email_desc: "aeltonsoaresdemenezes@gmail.com",
+    modal_email_btn: "Send Email ↗",
+    menu_schedule_meet: "Schedule Meeting (Google Meet)"
   },
 
   pt: {
@@ -179,7 +195,23 @@ const translations = {
     contact_linkedin: "LinkedIn ↗",
     contact_github: "GitHub ↗",
     contact_cv: "Baixar Currículo ↓",
-    footer_rights: "TODOS OS DIREITOS RESERVADOS"
+    footer_rights: "TODOS OS DIREITOS RESERVADOS",
+
+    // Meet / Schedule Modal
+    modal_badge: "GOOGLE MEET · SINCRONIZAÇÃO DE AGENDA",
+    modal_meet_title: "Agendar Reunião com Aelton",
+    modal_meet_subtitle: "Escolha um horário livre diretamente na agenda do Google com geração automática de sala no Google Meet, ou envie uma mensagem direta.",
+    modal_gmeet_tag: "AGENDA OFICIAL",
+    modal_gmeet_title: "Videoconferência via Google Meet",
+    modal_gmeet_desc: "Selecione o melhor dia e horário na minha agenda. Cria o link da sala no Google Meet e envia o convite imediatamente.",
+    modal_gmeet_btn: "Abrir Google Calendar ↗",
+    modal_wa_title: "WhatsApp Direto",
+    modal_wa_desc: "Conversa ágil para mensagens diretas e alinhamentos rápidos.",
+    modal_wa_btn: "Abrir WhatsApp ↗",
+    modal_email_title: "E-mail Profissional",
+    modal_email_desc: "aeltonsoaresdemenezes@gmail.com",
+    modal_email_btn: "Enviar E-mail ↗",
+    menu_schedule_meet: "Agendar Reunião (Google Meet)"
   }
 };
 
